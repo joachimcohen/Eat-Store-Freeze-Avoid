@@ -1,0 +1,1694 @@
+{
+  "meta": {
+    "version": 1,
+    "lastUpdated": "2026-11-01",
+    "about": "All advice in the app comes from this file. Set \"checked\": true on each item once it has been checked against its source."
+  },
+  "settings": {
+    "freezeWindowDays": 1
+  },
+  "sources": [
+    {
+      "id": "fsanz-date-marking",
+      "rank": 1,
+      "name": "FSANZ, Standard 1.2.5 Date Marking",
+      "url": "https://www.foodstandards.gov.au/news/we-hear-you-lets-clear-confusion-around-food-date-labels",
+      "usedFor": "What use-by and best-before mean",
+      "status": "confirmed",
+      "lastReviewed": "2026-11-01"
+    },
+    {
+      "id": "foodbank-vic",
+      "rank": 2,
+      "name": "Foodbank Victoria, Expiry and Distribution",
+      "url": "https://www.foodbank.org.au/expiry-and-distribution/",
+      "usedFor": "Best-before windows, the use-by rule, freezing before use-by",
+      "status": "confirmed",
+      "lastReviewed": "2026-11-01",
+      "pageUpdated": "2025-08-20",
+      "note": "Suggestions for charity partners, not legal advice. Permission not yet sought."
+    },
+    {
+      "id": "better-health",
+      "rank": 3,
+      "name": "Better Health Channel (Victorian Government)",
+      "url": "https://betterhealth.vic.gov.au/health/healthyliving/food-use-by-and-best-before-dates",
+      "usedFor": "Storage, look and smell checks",
+      "status": "to-review",
+      "lastReviewed": null
+    },
+    {
+      "id": "fsanz-storing",
+      "rank": 1,
+      "name": "FSANZ, Storing food safely",
+      "url": "https://www.foodstandards.gov.au/business/food-safety/storing-food-safely",
+      "usedFor": "Storage basics: fridge at 5°C or colder, frozen food kept frozen hard, follow the label",
+      "status": "confirmed",
+      "lastReviewed": "2026-11-01",
+      "pageUpdated": "2025-10-01",
+      "note": "Written for food businesses. Its business time limits are not applied to households."
+    },
+    {
+      "id": "fsanz-recalls",
+      "rank": 1,
+      "name": "FSANZ, Food recalls",
+      "url": "https://www.foodstandards.gov.au/food-recalls",
+      "usedFor": "Link on the About page and every Avoid result",
+      "status": "confirmed",
+      "lastReviewed": "2026-11-01"
+    },
+    {
+      "id": "open-food-facts",
+      "rank": null,
+      "name": "Open Food Facts",
+      "url": "https://world.openfoodfacts.org/",
+      "usedFor": "Product names from barcodes only, never advice. Open Database Licence.",
+      "status": "confirmed",
+      "lastReviewed": "2026-11-01"
+    }
+  ],
+  "storageTips": {
+    "fridge": {
+      "text": "Keep it in the fridge at 5°C or colder.",
+      "sourceId": "fsanz-storing"
+    },
+    "frozen": {
+      "text": "Keep it frozen hard.",
+      "sourceId": "fsanz-storing"
+    },
+    "label": {
+      "text": "Store it as the label says.",
+      "sourceId": "fsanz-storing"
+    }
+  },
+  "groups": [
+    {
+      "id": "use-by",
+      "name": "Use-by foods"
+    },
+    {
+      "id": "fresh",
+      "name": "Fresh and chilled"
+    },
+    {
+      "id": "frozen",
+      "name": "Frozen"
+    },
+    {
+      "id": "pantry",
+      "name": "Pantry"
+    }
+  ],
+  "categories": [
+    {
+      "id": "fresh-meat-fish-meals",
+      "name": "Prepacked fresh meat, fish and ready-to-eat meals",
+      "group": "use-by",
+      "usualDateType": "use-by",
+      "guidance": null,
+      "freezable": "yes",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": null,
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": [],
+      "note": "Up to the use-by date only. May be hard frozen before the date."
+    },
+    {
+      "id": "other-use-by",
+      "name": "Other products with a use-by date",
+      "group": "use-by",
+      "usualDateType": "use-by",
+      "guidance": null,
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": null,
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "fresh-bread",
+      "name": "Fresh bread",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 3,
+        "unit": "days"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 2,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "butter",
+      "name": "Butter and butter blends",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 4,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "margarine",
+      "name": "Margarine",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 4,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "thickened-cream",
+      "name": "Thickened cream",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 2,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "sour-cream",
+      "name": "Sour cream, crème fraîche, etc.",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 4,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "yoghurt-dips",
+      "name": "Yoghurts and dips",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 2,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "dairy-desserts",
+      "name": "Dairy desserts",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 2,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "shredded-cheese",
+      "name": "Shredded cheese",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 4,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "soft-cheese",
+      "name": "Soft cheese (brie, camembert, blue)",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 4,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "fresh-cheese",
+      "name": "Fresh cheese (feta, ricotta, cottage cheese)",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 4,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "hard-cheese",
+      "name": "Hard cheese (cheddar, edam)",
+      "group": "fresh",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 2,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "fridge",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "frozen-protein-uncooked",
+      "name": "Frozen protein, uncooked",
+      "group": "frozen",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 3,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "frozen",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "frozen-protein-cooked",
+      "name": "Frozen protein, cooked",
+      "group": "frozen",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 6,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "frozen",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "frozen-other",
+      "name": "All other frozen products",
+      "group": "frozen",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 6,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "frozen",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "baby-food",
+      "name": "Baby food",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": null,
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": [],
+      "note": "None past the date: up to the best-before date only. Never shown as OK past its date."
+    },
+    {
+      "id": "uht-milk",
+      "name": "Dairy UHT milk",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 8,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "uht-non-dairy",
+      "name": "Non-dairy UHT milk (soy, almond, etc.)",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 6,
+        "unit": "weeks"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "pasta-rice",
+      "name": "Pasta and rice",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 1,
+        "unit": "years"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "dry-ingredients",
+      "name": "Dry cooking and baking ingredients (flour, sugar, salt, herbs, powdered soup or meal base)",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 1,
+        "unit": "years"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "oils-preserved",
+      "name": "Cooking oils and preserved foods",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 1,
+        "unit": "years"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "coffee-tea",
+      "name": "Coffee and tea",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 1,
+        "unit": "years"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "still-water",
+      "name": "Non-carbonated water",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 1,
+        "unit": "years"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    },
+    {
+      "id": "shelf-stable-other",
+      "name": "All other shelf-stable products",
+      "group": "pantry",
+      "usualDateType": "best-before",
+      "guidance": {
+        "amount": 6,
+        "unit": "months"
+      },
+      "freezable": "unknown",
+      "freezerTime": null,
+      "storageTip": "label",
+      "whatToCheck": "Check it looks, smells and feels right before you eat it.",
+      "sourceIds": [
+        "foodbank-vic"
+      ],
+      "lastReviewed": "2026-11-01",
+      "checked": false,
+      "recipeLinks": []
+    }
+  ],
+  "synonyms": [
+    {
+      "term": "sliced bread",
+      "categoryId": "fresh-bread",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "bread rolls",
+      "categoryId": "fresh-bread",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "sourdough",
+      "categoryId": "fresh-bread",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "wraps",
+      "categoryId": "fresh-bread",
+      "usualDateType": "best-before",
+      "note": "Often shelf-stable; may belong in All other shelf-stable",
+      "checked": false
+    },
+    {
+      "term": "tortillas",
+      "categoryId": "fresh-bread",
+      "usualDateType": "best-before",
+      "note": "Often shelf-stable; may belong in All other shelf-stable",
+      "checked": false
+    },
+    {
+      "term": "crumpets",
+      "categoryId": "fresh-bread",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "eggs",
+      "categoryId": "eggs",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "butter",
+      "categoryId": "butter",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "spreadable butter",
+      "categoryId": "butter",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "margarine",
+      "categoryId": "margarine",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "thickened cream",
+      "categoryId": "thickened-cream",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "pouring cream",
+      "categoryId": "thickened-cream",
+      "usualDateType": "varies",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "sour cream",
+      "categoryId": "sour-cream",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "crème fraîche",
+      "categoryId": "sour-cream",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "yoghurt",
+      "categoryId": "yoghurt-dips",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "Greek yoghurt",
+      "categoryId": "yoghurt-dips",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "hummus",
+      "categoryId": "yoghurt-dips",
+      "usualDateType": "varies",
+      "note": "Some packs carry a use-by",
+      "checked": false
+    },
+    {
+      "term": "tzatziki",
+      "categoryId": "yoghurt-dips",
+      "usualDateType": "varies",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "French onion dip",
+      "categoryId": "yoghurt-dips",
+      "usualDateType": "varies",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "custard (chilled)",
+      "categoryId": "dairy-desserts",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "chocolate mousse",
+      "categoryId": "dairy-desserts",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "grated cheese",
+      "categoryId": "shredded-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "pizza cheese",
+      "categoryId": "shredded-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "brie",
+      "categoryId": "soft-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "camembert",
+      "categoryId": "soft-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "blue cheese",
+      "categoryId": "soft-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "feta",
+      "categoryId": "fresh-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "ricotta",
+      "categoryId": "fresh-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "cottage cheese",
+      "categoryId": "fresh-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "cream cheese",
+      "categoryId": "fresh-cheese",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "halloumi",
+      "categoryId": "fresh-cheese",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "cheddar",
+      "categoryId": "hard-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "tasty cheese",
+      "categoryId": "hard-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "edam",
+      "categoryId": "hard-cheese",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "parmesan (block)",
+      "categoryId": "hard-cheese",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "cheese slices",
+      "categoryId": "hard-cheese",
+      "usualDateType": "best-before",
+      "note": "Processed cheese; not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "frozen chicken (raw)",
+      "categoryId": "frozen-protein-uncooked",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen mince",
+      "categoryId": "frozen-protein-uncooked",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen fish fillets (raw)",
+      "categoryId": "frozen-protein-uncooked",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "raw prawns (frozen)",
+      "categoryId": "frozen-protein-uncooked",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen nuggets",
+      "categoryId": "frozen-protein-cooked",
+      "usualDateType": "best-before",
+      "note": "Only if the pack says pre-cooked",
+      "checked": false
+    },
+    {
+      "term": "frozen cooked prawns",
+      "categoryId": "frozen-protein-cooked",
+      "usualDateType": "best-before",
+      "note": "Only if the pack says pre-cooked",
+      "checked": false
+    },
+    {
+      "term": "frozen vegetables",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen peas",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen chips",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen berries",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "ice cream",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "frozen meals",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": "Meat content may mean a protein category",
+      "checked": false
+    },
+    {
+      "term": "frozen pizza",
+      "categoryId": "frozen-other",
+      "usualDateType": "best-before",
+      "note": "Meat content may mean a protein category",
+      "checked": false
+    },
+    {
+      "term": "baby food pouches",
+      "categoryId": "baby-food",
+      "usualDateType": "best-before",
+      "note": "Never shown as OK past the date",
+      "checked": false
+    },
+    {
+      "term": "infant cereal",
+      "categoryId": "baby-food",
+      "usualDateType": "best-before",
+      "note": "Never shown as OK past the date",
+      "checked": false
+    },
+    {
+      "term": "infant formula",
+      "categoryId": "baby-food",
+      "usualDateType": "varies",
+      "note": "Never shown as OK past the date",
+      "checked": false
+    },
+    {
+      "term": "long-life milk",
+      "categoryId": "uht-milk",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "UHT milk",
+      "categoryId": "uht-milk",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "soy milk (long-life)",
+      "categoryId": "uht-non-dairy",
+      "usualDateType": "best-before",
+      "note": "Chilled versions not covered",
+      "checked": false
+    },
+    {
+      "term": "almond milk (long-life)",
+      "categoryId": "uht-non-dairy",
+      "usualDateType": "best-before",
+      "note": "Chilled versions not covered",
+      "checked": false
+    },
+    {
+      "term": "oat milk (long-life)",
+      "categoryId": "uht-non-dairy",
+      "usualDateType": "best-before",
+      "note": "Chilled versions not covered",
+      "checked": false
+    },
+    {
+      "term": "pasta",
+      "categoryId": "pasta-rice",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "spaghetti",
+      "categoryId": "pasta-rice",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "rice",
+      "categoryId": "pasta-rice",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "couscous",
+      "categoryId": "pasta-rice",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "flour",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "sugar",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "salt",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "dried herbs",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "spices",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "stock powder",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "stock cubes",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "packet soup",
+      "categoryId": "dry-ingredients",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "olive oil",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "vegetable oil",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "canned tomatoes",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": "Does \"preserved\" include tins?",
+      "checked": false
+    },
+    {
+      "term": "canned beans",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": "Does \"preserved\" include tins?",
+      "checked": false
+    },
+    {
+      "term": "tinned tuna",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": "Does \"preserved\" include tins?",
+      "checked": false
+    },
+    {
+      "term": "tinned fish",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": "Does \"preserved\" include tins?",
+      "checked": false
+    },
+    {
+      "term": "jam",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "pickles",
+      "categoryId": "oils-preserved",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "instant coffee",
+      "categoryId": "coffee-tea",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "ground coffee",
+      "categoryId": "coffee-tea",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "tea bags",
+      "categoryId": "coffee-tea",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "bottled water (still)",
+      "categoryId": "still-water",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "breakfast cereal",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "oats",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Oats may be a dry ingredient",
+      "checked": false
+    },
+    {
+      "term": "biscuits",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "crackers",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "chips",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "muesli bars",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "chocolate",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "lollies",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "peanut butter",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "spreads",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "pasta sauce",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Unopened only",
+      "checked": false
+    },
+    {
+      "term": "sauces",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Unopened only",
+      "checked": false
+    },
+    {
+      "term": "instant noodles",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Could fit Pasta and rice",
+      "checked": false
+    },
+    {
+      "term": "juice (shelf)",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "soft drink",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide",
+      "checked": false
+    },
+    {
+      "term": "fresh mince",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": "Freeze before the date",
+      "checked": false
+    },
+    {
+      "term": "chicken",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": "Freeze before the date",
+      "checked": false
+    },
+    {
+      "term": "sausages",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": "Freeze before the date",
+      "checked": false
+    },
+    {
+      "term": "fresh fish",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "smoked salmon",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "ham (prepacked)",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "deli meats (prepacked)",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "chilled ready meals",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "fresh soup",
+      "categoryId": "fresh-meat-fish-meals",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    },
+    {
+      "term": "fresh pasta (chilled)",
+      "categoryId": "other-use-by",
+      "usualDateType": "varies",
+      "note": "Date type varies by brand",
+      "checked": false
+    },
+    {
+      "term": "bagged salad",
+      "categoryId": "other-use-by",
+      "usualDateType": "use-by",
+      "note": null,
+      "checked": false
+    }
+  ],
+  "notCovered": {
+    "message": "We don't have checked information for this yet.",
+    "terms": [
+      "fresh milk",
+      "milk",
+      "fruit",
+      "vegetables",
+      "leftovers",
+      "home-cooked food"
+    ]
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "text": "Best-before is about quality. Use-by is about safety.",
+      "sourceId": "fsanz-date-marking",
+      "checked": false
+    },
+    {
+      "id": "f2",
+      "text": "Food can still be sold after its best-before date, but not after its use-by date.",
+      "sourceId": "fsanz-date-marking",
+      "checked": false
+    },
+    {
+      "id": "f3",
+      "text": "Use-by food can be frozen before its date to keep it longer, and should be used straight after thawing.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "f4",
+      "text": "Food past its use-by date shouldn't be eaten even if it looks and smells fine.",
+      "sourceId": "better-health",
+      "checked": false
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "scenario": "Chicken thigh fillets. Use by: yesterday. Looks and smells fine.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "fresh-meat-fish-meals",
+        "dateType": "use-by",
+        "dateOffset": {
+          "days": -1
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "avoid",
+      "why": "Use-by is a safety date. Don't eat food past it, even if it looks and smells fine.",
+      "sourceId": "better-health",
+      "checked": false
+    },
+    {
+      "id": "q2",
+      "scenario": "Sausages. Use by: tomorrow.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "fresh-meat-fish-meals",
+        "dateType": "use-by",
+        "dateOffset": {
+          "days": 1
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "freeze",
+      "why": "Freezing before the use-by date keeps meat longer. Use it straight after thawing.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q3",
+      "scenario": "Sliced ham (prepacked). Use by: in 5 days.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "fresh-meat-fish-meals",
+        "dateType": "use-by",
+        "dateOffset": {
+          "days": 5
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "store",
+      "why": "Not at its date yet. Keep it in the fridge at 5°C or colder.",
+      "sourceId": "fsanz-storing",
+      "checked": false
+    },
+    {
+      "id": "q4",
+      "scenario": "Dry pasta. Best before: 3 months ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "pasta-rice",
+        "dateType": "best-before",
+        "dateOffset": {
+          "months": -3
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "eat",
+      "why": "Pasta is generally OK for up to a year past its best-before date.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q5",
+      "scenario": "Greek yoghurt. Best before: 5 days ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "yoghurt-dips",
+        "dateType": "best-before",
+        "dateOffset": {
+          "days": -5
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "eat",
+      "why": "Yoghurt is generally OK for up to 2 weeks past best-before. Check it looks and smells right.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q6",
+      "scenario": "Greek yoghurt. Best before: 3 weeks ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "yoghurt-dips",
+        "dateType": "best-before",
+        "dateOffset": {
+          "days": -21
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "avoid",
+      "why": "That's outside the 2-week guidance we use, so we can't say it's OK.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q7",
+      "scenario": "Sliced bread. Best before: 6 days ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "fresh-bread",
+        "dateType": "best-before",
+        "dateOffset": {
+          "days": -6
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "avoid",
+      "why": "Fresh bread guidance only goes to 3 days past best-before.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q8",
+      "scenario": "Cheddar cheese. Best before: 1 month ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "hard-cheese",
+        "dateType": "best-before",
+        "dateOffset": {
+          "months": -1
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "eat",
+      "why": "Hard cheese is generally OK for up to 2 months past best-before.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q9",
+      "scenario": "Long-life milk. Best before: 3 weeks ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "uht-milk",
+        "dateType": "best-before",
+        "dateOffset": {
+          "days": -21
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "eat",
+      "why": "UHT milk is generally OK for up to 8 weeks past best-before, unopened.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q10",
+      "scenario": "Eggs. Best before: next week.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "eggs",
+        "dateType": "best-before",
+        "dateOffset": {
+          "days": 7
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "store",
+      "why": "Not at its date yet. Store them as the label says.",
+      "sourceId": "fsanz-storing",
+      "checked": false
+    },
+    {
+      "id": "q11",
+      "scenario": "Baby food pouch. Best before: 2 days ago.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "baby-food",
+        "dateType": "best-before",
+        "dateOffset": {
+          "days": -2
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": false
+      },
+      "answer": "avoid",
+      "why": "Baby food is never shown as OK past its date.",
+      "sourceId": "foodbank-vic",
+      "checked": false
+    },
+    {
+      "id": "q12",
+      "scenario": "Tin of tomatoes. Best before: next year. The tin is badly dented and swollen.",
+      "photo": null,
+      "inputs": {
+        "categoryId": "oils-preserved",
+        "dateType": "best-before",
+        "dateOffset": {
+          "years": 1
+        },
+        "opened": false,
+        "storedProperly": true,
+        "damaged": true
+      },
+      "answer": "avoid",
+      "why": "Damaged packaging can spoil food before its date.",
+      "sourceId": "better-health",
+      "checked": false
+    }
+  ],
+  "wording": {
+    "verdicts": {
+      "store": {
+        "label": "Store",
+        "summary": "Not at its date yet. Keep it."
+      },
+      "eat": {
+        "label": "Eat",
+        "summary": "Eat it soon, and check it looks and smells right first."
+      },
+      "freeze": {
+        "label": "Freeze",
+        "summary": "Freeze it today if it's suitable, otherwise eat it today."
+      },
+      "avoid": {
+        "label": "Avoid",
+        "summary": "Don't eat it. If you're shopping, don't buy it."
+      },
+      "no-info": {
+        "label": "No verified info",
+        "summary": "We don't have checked information for this. If in doubt, throw it out."
+      }
+    },
+    "reasons": {
+      "damaged": "The pack is damaged, swollen or leaking. Damaged packaging can spoil food before its date.",
+      "not-stored": "It hasn't been stored as the label says, so the date can't be relied on.",
+      "use-by-passed": "Use-by is a safety date. Don't eat food past it, even if it looks and smells fine.",
+      "use-by-freeze": "The use-by date is today or very close. Freeze it today, or eat it today.",
+      "use-by-today": "The use-by date is today. Eat it today.",
+      "use-by-not-yet": "Not at its use-by date yet.",
+      "best-before-not-yet": "Not at its best-before date yet.",
+      "within-guidance": "Past its best-before date, but within the guidance we use.",
+      "best-before-no-window": "This food is never shown as OK past its date.",
+      "outside-guidance": "This is outside the guidance we use, so we can't say it's OK.",
+      "opened": "The guidance we use covers unopened food only.",
+      "no-date": "We can only help when the pack has a date.",
+      "not-in-list": "This food isn't in our checked list yet."
+    },
+    "eatByAbout": "Generally OK to eat until about {date}.",
+    "useByWarning": "Food past its use-by date shouldn't be eaten even if it looks and smells fine.",
+    "generalUseByRules": "Not in our list, so these are the general use-by rules.",
+    "freezing": {
+      "can-freeze": "Can be frozen before the use-by date. Use it straight after thawing.",
+      "check-pack": "Check the pack for freezing advice."
+    },
+    "extraCare": "If you're pregnant, cooking for young children or older people, or have a weakened immune system, stick to the dates and check with a health professional.",
+    "shopping": {
+      "eat": "Only buy it if you'll eat it by this date.",
+      "freeze": "Only buy it if you'll eat or freeze it today."
+    },
+    "matchedTo": "{term} → matched to: {category} (Foodbank Victoria category)",
+    "matchUnchecked": "This match has not been checked yet.",
+    "disclaimer": "General guidance only, not medical or legal advice. It assumes the food is unopened, undamaged and stored as the label says. We don't check allergens or ingredients.",
+    "ifInDoubt": "If in doubt, throw it out.",
+    "recalls": "Check current food recalls",
+    "sourceLine": "Source: {source}. Last reviewed {date}.",
+    "sourceNotReviewed": "Source: {source}. Review pending.",
+    "foodbankAttribution": "Foodbank Victoria's guidance for food relief suggests this."
+  }
+}

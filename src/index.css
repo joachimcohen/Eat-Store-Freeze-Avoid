@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+/* Looks like the printed date on the top of a milk carton:
+   waxed white card, dot-matrix inkjet print. */
+@theme {
+  --color-carton: #f7f5ef;
+  --color-card: #ffffff;
+  --color-ink: #1f2430;
+  --color-ink-soft: #545b69;
+  --color-rule: #d9d4c7;
+  --color-store: #a65c00;
+  --color-store-bg: #fff1dc;
+  --color-eat: #1d6b36;
+  --color-eat-bg: #e3f4e7;
+  --color-freeze: #1c5aa6;
+  --color-freeze-bg: #e1ecfa;
+  --color-avoid: #b3261e;
+  --color-avoid-bg: #fbe4e2;
+  --color-noinfo: #5b6170;
+  --color-noinfo-bg: #eceef1;
+  --font-dot: 'Doto', ui-monospace, monospace;
+}
+
+html { background: var(--color-carton); color: var(--color-ink); }
+body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+
+.print { font-family: var(--font-dot); font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
