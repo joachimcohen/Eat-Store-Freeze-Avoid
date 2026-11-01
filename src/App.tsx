@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Header } from './components/ui'
+import { Bottle } from './components/Bottle'
+import { CAP_COLOURS } from './components/verdictStyle'
 import { data } from './data'
 import { emptyDraft, type Draft } from './draft'
 import { combineReadings } from './lib/label'
@@ -9,20 +10,21 @@ import { localToday } from './rules/dates'
 import { decideVerdict } from './rules/verdict'
 import { Confirm } from './screens/Confirm'
 import { Find } from './screens/Find'
+import { Quiz } from './screens/Quiz'
 import { Result } from './screens/Result'
 import { RulesCheck } from './screens/RulesCheck'
 
-type Screen = 'find' | 'confirm' | 'result' | 'rules'
+type Screen = 'find' | 'confirm' | 'result' | 'rules' | 'quiz'
 
 export default function App() {
-  const [screen, setScreenState] = useState<Screen>(() => (location.hash === '#rules' ? 'rules' : 'find'))
+  const [screen, setScreenState] = useState<Screen>(() => (location.hash === '#rules' ? 'rules' : location.hash === '#quiz' ? 'quiz' : 'find'))
   const [draft, setDraft] = useState<Draft>(emptyDraft)
   const photoRun = useRef(0)
-  const main = useRef<HTMLElement>(null)
+  const main = useRef<HTMLDivElement>(null)
 
   // Phone back button moves between screens.
   const go = useCallback((next: Screen) => {
-    history.pushState({ screen: next }, '', next === 'rules' ? '#rules' : location.pathname)
+    history.pushState({ screen: next }, '', next === 'rules' || next === 'quiz' ? `#${next}` : location.pathname)
     setScreenState(next)
   }, [])
   useEffect(() => {
@@ -86,24 +88,31 @@ export default function App() {
       })
     : null
 
+  const cap = screen === 'result' && result ? CAP_COLOURS[result.verdict] : CAP_COLOURS.default
+
   return (
-    <div className="mx-auto max-w-xl px-4 py-5">
-      <Header onHome={startAgain} />
-      <main ref={main}>
-        {screen === 'find' && <Find onPick={pickFood} onPhoto={readPhoto} />}
+    <Bottle
+      capColour={cap}
+      onHome={startAgain}
+      footer={
+        <>
+          <p>Private prototype. General guidance only.</p>
+          <p className="mt-2">
+            <a href="#rules" onClick={(e) => { e.preventDefault(); go('rules') }} className="underline underline-offset-4">Rules check (prototype)</a>
+          </p>
+        </>
+      }
+    >
+      <div ref={main}>
+        {screen === 'find' && <Find onPick={pickFood} onPhoto={readPhoto} onQuiz={() => go('quiz')} />}
         {screen === 'confirm' && <Confirm draft={draft} update={update} onPhoto={readPhoto} onSubmit={() => go('result')} />}
         {screen === 'result' && result && draft.food && (
           <Result result={result} food={draft.food} onChange={() => go('confirm')} onAgain={startAgain} />
         )}
-        {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} />}
+        {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} onQuiz={() => go('quiz')} />}
         {screen === 'rules' && <RulesCheck />}
-      </main>
-      <footer className="mt-10 border-t border-rule pt-4 text-sm text-ink-soft">
-        <p>Private prototype. General guidance only.</p>
-        <p className="mt-2">
-          <a href="#rules" onClick={(e) => { e.preventDefault(); go('rules') }} className="underline underline-offset-4">Rules check (prototype)</a>
-        </p>
-      </footer>
-    </div>
+        {screen === 'quiz' && <Quiz onDone={startAgain} />}
+      </div>
+    </Bottle>
   )
 }

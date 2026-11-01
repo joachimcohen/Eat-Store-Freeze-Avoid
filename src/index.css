@@ -1,30 +1,70 @@
 @import 'tailwindcss';
 
-/* Looks like the printed date on the top of a milk carton:
-   waxed white card, dot-matrix inkjet print. */
+/* A bottle of Aussie milk: white bottle, ridged coloured cap, blue label
+   band, and the date printed in dot-matrix on the neck. */
 @theme {
-  --color-carton: #f7f5ef;
+  --color-fridge: #cfe4f8;
+  --color-carton: #eef5fc;
   --color-card: #ffffff;
-  --color-ink: #1f2430;
-  --color-ink-soft: #545b69;
-  --color-rule: #d9d4c7;
-  --color-store: #a65c00;
-  --color-store-bg: #fff1dc;
-  --color-eat: #1d6b36;
-  --color-eat-bg: #e3f4e7;
-  --color-freeze: #1c5aa6;
-  --color-freeze-bg: #e1ecfa;
+  --color-ink: #14213d;
+  --color-ink-soft: #4d5a73;
+  --color-rule: #cddbea;
+  --color-brand: #1f5fd6;
+  --color-brand-deep: #123f99;
+  --color-cream: #fff8e6;
+  --color-store: #9a5200;
+  --color-store-bg: #ffecc8;
+  --color-eat: #17703a;
+  --color-eat-bg: #dcf5e3;
+  --color-freeze: #1352a8;
+  --color-freeze-bg: #dcebff;
   --color-avoid: #b3261e;
-  --color-avoid-bg: #fbe4e2;
-  --color-noinfo: #5b6170;
-  --color-noinfo-bg: #eceef1;
+  --color-avoid-bg: #fde2df;
+  --color-noinfo: #545b6a;
+  --color-noinfo-bg: #e9ecf1;
   --font-dot: 'Doto', ui-monospace, monospace;
+  --font-display: 'Fredoka', ui-rounded, system-ui, sans-serif;
 }
 
-html { background: var(--color-carton); color: var(--color-ink); }
-body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+html {
+  background: var(--color-fridge);
+  color: var(--color-ink);
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Soft fridge light with a few bubbles. */
+  background:
+    radial-gradient(circle at 12% 18%, #ffffff88 0 18px, transparent 19px),
+    radial-gradient(circle at 88% 30%, #ffffff66 0 10px, transparent 11px),
+    radial-gradient(circle at 80% 78%, #ffffff55 0 26px, transparent 27px),
+    radial-gradient(circle at 8% 70%, #ffffff55 0 8px, transparent 9px),
+    linear-gradient(180deg, #e3f0fb 0%, var(--color-fridge) 100%);
+  background-attachment: fixed;
+}
 
 .print { font-family: var(--font-dot); font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
+.display { font-family: var(--font-display); }
+
+/* The cap: ridges and a little shine. Colour comes from --cap. */
+.cap {
+  background:
+    linear-gradient(180deg, #ffffff40, transparent 40%, #00000022),
+    repeating-linear-gradient(90deg, var(--cap) 0 7px, color-mix(in srgb, var(--cap) 78%, black) 7px 9px);
+  transition: background-color 0.4s, --cap 0.4s;
+}
+@property --cap { syntax: '<color>'; inherits: true; initial-value: #1f5fd6; }
+
+.bottle { box-shadow: 0 1px 0 #ffffff inset, 0 18px 40px -18px #12305f55, 0 2px 6px #12305f22; }
+
+/* Verdict sticker. */
+.sticker { transform: rotate(-1.5deg); box-shadow: 0 6px 0 -2px #14213d22; }
+@media (prefers-reduced-motion: no-preference) {
+  .pop { animation: pop 0.35s cubic-bezier(.2,1.4,.4,1) both; }
+  @keyframes pop { from { transform: scale(0.85) rotate(-6deg); opacity: 0 } to { transform: rotate(-1.5deg); opacity: 1 } }
+  .cap { transition: --cap 0.5s; }
+}
 
 /* Headings get focus when a screen opens (for screen readers); no box needed. */
 h1[tabindex="-1"]:focus { outline: none; }

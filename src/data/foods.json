@@ -1689,6 +1689,38 @@
     "recalls": "Check current food recalls",
     "sourceLine": "Source: {source}. Last reviewed {date}.",
     "sourceNotReviewed": "Source: {source}. Review pending.",
-    "foodbankAttribution": "Foodbank Victoria's guidance for food relief suggests this."
-  }
+    "foodbankAttribution": "Foodbank Victoria's guidance for food relief suggests this.",
+    "recipes": {
+      "heading": "Use it up",
+      "intro": "Recipe ideas from:",
+      "perFood": "Recipes that use this food:",
+      "note": "Links open the original site. Recipes stay with their owners."
+    }
+  },
+  "recipeSources": [
+    {
+      "id": "ozharvest-use-it-up",
+      "name": "OzHarvest, Use It Up recipes",
+      "url": "https://www.ozharvest.org/use-it-up/recipes/",
+      "checked": false
+    },
+    {
+      "id": "foodbank-vic-recipes",
+      "name": "Foodbank Victoria, recipes",
+      "url": "https://www.foodbank.org.au/vic/recipes/",
+      "checked": false
+    },
+    {
+      "id": "foodbank-cheap-recipes",
+      "name": "Foodbank, cheap recipe ideas",
+      "url": "https://www.foodbank.org.au/cheap-recipe-ideas/",
+      "checked": false
+    },
+    {
+      "id": "foodbank-sa-nt-recipe-book",
+      "name": "Foodbank SA and NT, Recipe Book (PDF)",
+      "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf",
+      "checked": false
+    }
+  ]
 }

@@ -9,6 +9,9 @@ export type ResultLines = {
   summary: string
   why: string
   eatByAbout: string | null
+  /** Labelled facts for the result panel. */
+  facts: { label: string; text: string }[]
+  /** All notes in one list (used by the rules check page). */
   notes: string[]
   sources: string[]
   ifInDoubt: string
@@ -18,13 +21,13 @@ const fill = (t: string, values: Record<string, string>) => t.replace(/\{(\w+)\}
 
 export function describeResult(r: VerdictResult): ResultLines {
   const w = data.wording
-  const notes: string[] = []
-  if (r.generalUseByRules) notes.push(w.generalUseByRules)
-  if (r.useByWarning && r.reason !== 'use-by-passed') notes.push(w.useByWarning)
-  if (r.whatToCheck) notes.push(r.whatToCheck)
-  if (r.storageTip) notes.push(data.storageTips[r.storageTip].text)
-  if (r.freezingNote) notes.push(w.freezing[r.freezingNote])
-  if (r.extraCare) notes.push(w.extraCare)
+  const facts: { label: string; text: string }[] = []
+  if (r.generalUseByRules) facts.push({ label: 'Rules used', text: w.generalUseByRules })
+  if (r.useByWarning && r.reason !== 'use-by-passed') facts.push({ label: 'Use-by', text: w.useByWarning })
+  if (r.whatToCheck) facts.push({ label: 'Check', text: r.whatToCheck })
+  if (r.storageTip) facts.push({ label: 'Storage', text: data.storageTips[r.storageTip].text })
+  if (r.freezingNote) facts.push({ label: 'Freezing', text: w.freezing[r.freezingNote] })
+  if (r.extraCare) facts.push({ label: 'Extra care', text: w.extraCare })
 
   const sources = r.sourceIds.map((id) => {
     const s = getSource(id)!
@@ -38,7 +41,8 @@ export function describeResult(r: VerdictResult): ResultLines {
     summary: w.verdicts[r.verdict].summary,
     why: w.reasons[r.reason],
     eatByAbout: r.eatByAbout ? fill(w.eatByAbout, { date: formatDate(r.eatByAbout) }) : null,
-    notes,
+    facts,
+    notes: facts.map((f) => f.text),
     sources,
     ifInDoubt: w.ifInDoubt,
   }

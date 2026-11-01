@@ -130,3 +130,10 @@ describe('wording rules', () => {
     expect(data.wording.ifInDoubt).toBe('If in doubt, throw it out.')
   })
 })
+
+describe('recipe links', () => {
+  it('every recipe source and food recipe link is a full https link', () => {
+    for (const r of data.recipeSources) expect(r.url, r.name).toMatch(/^https:\/\//)
+    for (const c of data.categories) for (const r of c.recipeLinks) expect(r.url, r.title).toMatch(/^https:\/\//)
+  })
+})

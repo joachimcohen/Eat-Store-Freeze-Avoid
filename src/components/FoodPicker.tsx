@@ -20,10 +20,10 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
         placeholder="For example yoghurt, pasta, UHT milk"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="mt-2 block min-h-12 w-full rounded-lg border-2 border-ink bg-card px-3 text-lg"
+        className="mt-2 block min-h-12 w-full rounded-2xl border-2 border-rule bg-white px-4 text-lg outline-none focus:border-brand"
       />
       {query.trim().length >= 2 && (
-        <ul className="mt-2 divide-y divide-rule overflow-hidden rounded-lg border border-rule bg-card" aria-label="Suggestions">
+        <ul className="mt-2 divide-y divide-rule overflow-hidden rounded-2xl border border-rule bg-white" aria-label="Suggestions">
           {results.map((r) => (
             <li key={`${r.kind}:${r.term}`}>
               <button type="button" onClick={() => onPick(r)} className="block min-h-12 w-full px-3 py-2 text-left hover:bg-carton">
@@ -47,7 +47,7 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
         type="button"
         aria-expanded={browsing}
         onClick={() => setBrowsing(!browsing)}
-        className="mt-4 min-h-11 font-medium underline underline-offset-4"
+        className="mt-4 min-h-11 font-medium text-brand-deep underline underline-offset-4"
       >
         {browsing ? 'Hide the food list' : 'Browse the food list'}
       </button>
@@ -55,8 +55,8 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
         <div className="mt-2 grid gap-4">
           {data.groups.map((g) => (
             <section key={g.id}>
-              <h3 className="print text-sm">{g.name}</h3>
-              <ul className="mt-1 divide-y divide-rule overflow-hidden rounded-lg border border-rule bg-card">
+              <h3 className="display text-sm font-semibold tracking-wide text-brand-deep uppercase">{g.name}</h3>
+              <ul className="mt-1 divide-y divide-rule overflow-hidden rounded-2xl border border-rule bg-white">
                 {data.categories.filter((c) => c.group === g.id).map((c) => (
                   <li key={c.id}>
                     <button type="button" onClick={() => onPick(chooseCategory(c))} className="block min-h-12 w-full px-3 py-2 text-left hover:bg-carton">

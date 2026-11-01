@@ -44,9 +44,9 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
 
   return (
     <>
-      <h1 className="mt-5 text-2xl font-bold" tabIndex={-1}>Check the details</h1>
+      <h1 className="display mt-6 text-3xl font-semibold" tabIndex={-1}>Check the details</h1>
 
-      <section className="mt-4 rounded-lg border border-rule bg-card p-4" aria-label="Food">
+      <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Food">
         {draft.food ? (
           <>
             <p className="text-sm text-ink-soft">Food</p>
@@ -56,7 +56,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
         ) : (
           <>
             {label.status === 'done' && label.suggestedFood && (
-              <div className="mb-4 rounded-lg bg-carton p-3">
+              <div className="mb-4 rounded-2xl bg-white p-3 shadow-sm">
                 <p className="text-sm">Found on the label:</p>
                 <MatchLine food={label.suggestedFood} />
                 <Button variant="secondary" className="mt-2 w-full" onClick={() => pickFood(label.suggestedFood!)}>Yes, use this</Button>
@@ -67,7 +67,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
         )}
       </section>
 
-      <section className="mt-4 rounded-lg border border-rule bg-card p-4" aria-label="Date">
+      <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Date">
         <LabelStatus draft={draft} />
         <PhotoButton variant="secondary" onPhoto={onPhoto} className="mt-3 w-full">
           {label.status === 'idle' ? 'Read the date from a photo' : 'Try another photo'}
@@ -95,14 +95,14 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
               type="date"
               value={draft.date}
               onChange={(e) => update({ date: e.target.value })}
-              className="mt-2 block min-h-12 w-full rounded-lg border-2 border-ink bg-card px-3 text-lg"
+              className="mt-2 block min-h-12 w-full rounded-2xl border-2 border-rule bg-white px-4 text-lg outline-none focus:border-brand"
             />
             {draft.date && <p className="print mt-2" aria-hidden="true">{formatDate(draft.date)}</p>}
           </div>
         )}
       </section>
 
-      <section className="mt-4 rounded-lg border border-rule bg-card p-4" aria-label="Quick questions">
+      <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Quick questions">
         <Choice
           legend="Is it opened or unopened?"
           name="opened"

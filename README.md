@@ -40,3 +40,12 @@ Open Food Facts product data is used under the Open Database Licence.
 ## Reading date labels
 
 Photos are read on the phone by Tesseract (text recognition running in the browser). Its files are copied into `public/ocr` by `scripts/copy-ocr-files.mjs` before each build, so nothing is fetched from elsewhere. Each photo is read four ways (plain, and with the dots of dot-matrix print joined by three amounts), and the date most readings agree on is pre-filled. On a tie the earlier date and use-by are chosen. The person always checks the result.
+
+## Install on a phone
+
+Open the site link on the phone, then:
+
+- **iPhone (Safari):** tap Share, then **Add to Home Screen**.
+- **Android (Chrome):** tap the ⋮ menu, then **Add to Home screen** (or **Install app**).
+
+After the first visit it works offline. While prototyping it always loads the newest version when there is a connection.
