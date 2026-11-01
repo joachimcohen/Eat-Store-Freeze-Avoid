@@ -36,3 +36,7 @@ npm run build   # build for hosting
 This is a static site, so Vercel hosts it for free. `vercel.json`, `public/robots.txt` and a meta tag tell search engines not to index it.
 
 Open Food Facts product data is used under the Open Database Licence.
+
+## Reading date labels
+
+Photos are read on the phone by Tesseract (text recognition running in the browser). Its files are copied into `public/ocr` by `scripts/copy-ocr-files.mjs` before each build, so nothing is fetched from elsewhere. Each photo is read four ways (plain, and with the dots of dot-matrix print joined by three amounts), and the date most readings agree on is pre-filled. On a tie the earlier date and use-by are chosen. The person always checks the result.

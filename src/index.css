@@ -25,3 +25,6 @@ html { background: var(--color-carton); color: var(--color-ink); }
 body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
 
 .print { font-family: var(--font-dot); font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Headings get focus when a screen opens (for screen readers); no box needed. */
+h1[tabindex="-1"]:focus { outline: none; }
