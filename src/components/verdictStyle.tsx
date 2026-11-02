@@ -10,7 +10,7 @@ export const VERDICT_COLOURS: Record<Verdict, string> = {
 }
 /** Cap colour for each verdict (the bottle cap changes on the result). */
 export const CAP_COLOURS: Record<Verdict | 'default', string> = {
-  default: '#1f5fd6',
+  default: '#f4f6fb',
   eat: '#1f9a4f',
   store: '#f0a020',
   freeze: '#2f86e8',

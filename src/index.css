@@ -1,17 +1,16 @@
 @import 'tailwindcss';
 
-/* A bottle of Aussie milk: white bottle, ridged coloured cap, blue label
-   band, and the date printed in dot-matrix on the neck. */
+/* A gable-top milk carton in black and blue. */
 @theme {
-  --color-fridge: #cfe4f8;
-  --color-carton: #eef5fc;
+  --color-fridge: #e4e9f2;
+  --color-carton: #edf2ff;
   --color-card: #ffffff;
-  --color-ink: #14213d;
-  --color-ink-soft: #4d5a73;
-  --color-rule: #cddbea;
-  --color-brand: #1f5fd6;
-  --color-brand-deep: #123f99;
-  --color-cream: #fff8e6;
+  --color-ink: #0d0f14;
+  --color-ink-soft: #4a5366;
+  --color-rule: #d3dbea;
+  --color-brand: #155eef;
+  --color-brand-deep: #0a3aa8;
+  --color-cream: #edf2ff;
   --color-store: #9a5200;
   --color-store-bg: #ffecc8;
   --color-eat: #17703a;
@@ -40,23 +39,23 @@ body {
     radial-gradient(circle at 88% 30%, #ffffff66 0 10px, transparent 11px),
     radial-gradient(circle at 80% 78%, #ffffff55 0 26px, transparent 27px),
     radial-gradient(circle at 8% 70%, #ffffff55 0 8px, transparent 9px),
-    linear-gradient(180deg, #e3f0fb 0%, var(--color-fridge) 100%);
+    linear-gradient(180deg, #f1f4f9 0%, var(--color-fridge) 100%);
   background-attachment: fixed;
 }
 
 .print { font-family: var(--font-dot); font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
 .display { font-family: var(--font-display); }
 
-/* The cap: ridges and a little shine. Colour comes from --cap. */
+/* The screw cap: ridges round the edge and a little shine. Colour comes from --cap. */
 .cap {
   background:
-    linear-gradient(180deg, #ffffff40, transparent 40%, #00000022),
-    repeating-linear-gradient(90deg, var(--cap) 0 7px, color-mix(in srgb, var(--cap) 78%, black) 7px 9px);
-  transition: background-color 0.4s, --cap 0.4s;
+    radial-gradient(circle at 35% 30%, #ffffff66 0 18%, transparent 40%),
+    radial-gradient(circle, var(--cap) 0 58%, transparent 59%),
+    repeating-conic-gradient(var(--cap) 0 6deg, color-mix(in srgb, var(--cap) 70%, black) 6deg 12deg);
 }
-@property --cap { syntax: '<color>'; inherits: true; initial-value: #1f5fd6; }
+@property --cap { syntax: '<color>'; inherits: true; initial-value: #155eef; }
 
-.bottle { box-shadow: 0 1px 0 #ffffff inset, 0 18px 40px -18px #12305f55, 0 2px 6px #12305f22; }
+.carton { box-shadow: 0 22px 40px -20px #0d0f1488, 0 2px 6px #0d0f1433; }
 
 /* Verdict sticker. */
 .sticker { transform: rotate(-1.5deg); box-shadow: 0 6px 0 -2px #14213d22; }
@@ -64,6 +63,8 @@ body {
   .pop { animation: pop 0.35s cubic-bezier(.2,1.4,.4,1) both; }
   @keyframes pop { from { transform: scale(0.85) rotate(-6deg); opacity: 0 } to { transform: rotate(-1.5deg); opacity: 1 } }
   .cap { transition: --cap 0.5s; }
+  .cap-spin { animation: spin 0.6s ease-out; }
+  @keyframes spin { from { rotate: -120deg } to { rotate: 0deg } }
 }
 
 /* Headings get focus when a screen opens (for screen readers); no box needed. */

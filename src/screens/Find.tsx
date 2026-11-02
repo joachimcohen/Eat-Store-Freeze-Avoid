@@ -22,7 +22,7 @@ export function Find({ onPick, onPhoto, onQuiz }: { onPick: (f: FoodChoice) => v
       <button
         type="button"
         onClick={onQuiz}
-        className="mt-4 flex w-full items-center gap-4 rounded-3xl bg-cream p-4 text-left transition hover:brightness-97 focus-visible:outline-3 focus-visible:outline-brand"
+        className="mt-4 flex w-full items-center gap-4 rounded-3xl bg-ink p-4 text-left text-white transition hover:brightness-125 focus-visible:outline-3 focus-visible:outline-brand"
       >
         <span aria-hidden="true" className="grid grid-cols-2 gap-1">
           {(['eat', 'store', 'freeze', 'avoid'] as const).map((v) => (
@@ -31,7 +31,7 @@ export function Find({ onPick, onPhoto, onQuiz }: { onPick: (f: FoodChoice) => v
         </span>
         <span>
           <span className="display block text-xl font-semibold">Quiz: Eat, Store, Freeze or Avoid?</span>
-          <span className="block text-sm text-ink-soft">10 quick questions. How well do you know your dates?</span>
+          <span className="block text-sm text-[#b9cdf5]">10 quick questions. How well do you know your dates?</span>
         </span>
       </button>
     </>

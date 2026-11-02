@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Bottle } from './components/Bottle'
+import { Carton } from './components/Carton'
 import { CAP_COLOURS } from './components/verdictStyle'
 import { data } from './data'
 import { emptyDraft, type Draft } from './draft'
@@ -91,7 +91,7 @@ export default function App() {
   const cap = screen === 'result' && result ? CAP_COLOURS[result.verdict] : CAP_COLOURS.default
 
   return (
-    <Bottle
+    <Carton
       capColour={cap}
       onHome={startAgain}
       footer={
@@ -113,6 +113,6 @@ export default function App() {
         {screen === 'rules' && <RulesCheck />}
         {screen === 'quiz' && <Quiz onDone={startAgain} />}
       </div>
-    </Bottle>
+    </Carton>
   )
 }
