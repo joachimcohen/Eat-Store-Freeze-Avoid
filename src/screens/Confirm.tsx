@@ -26,11 +26,12 @@ export function MatchLine({ food }: { food: FoodChoice }) {
   )
 }
 
-export function Confirm({ draft, update, onDateScan, onSubmit }: {
+export function Confirm({ draft, update, onDateScan, onSubmit, onStartAgain }: {
   draft: Draft
   update: (d: Partial<Draft>) => void
   onDateScan: () => void
   onSubmit: () => void
+  onStartAgain: () => void
 }) {
   const todo = missing(draft)
   const label = draft.label
@@ -108,6 +109,17 @@ export function Confirm({ draft, update, onDateScan, onSubmit }: {
           onChange={(opened) => update({ opened })}
           options={[{ value: 'unopened', label: 'Unopened' }, { value: 'opened', label: 'Opened' }]}
         />
+        {draft.opened === 'opened' && (
+          <div role="status" className="mt-4 rounded-2xl border-2 border-ink bg-paper p-4">
+            <p className="display text-lg">{data.wording.openedStop.title}</p>
+            <p className="mt-1">{data.wording.openedStop.text}</p>
+            <p className="mt-2 font-extrabold">{data.wording.openedStop.useBy}</p>
+            <p className="mt-2 font-extrabold">{data.wording.ifInDoubt}</p>
+            <Button className="mt-4 w-full" onClick={onStartAgain}>{data.wording.openedStop.button}</Button>
+          </div>
+        )}
+        {draft.opened !== 'opened' && (
+          <>
         <Choice
           legend="Has it been stored as the label says?"
           name="stored"
@@ -123,10 +135,16 @@ export function Confirm({ draft, update, onDateScan, onSubmit }: {
           onChange={(damaged) => update({ damaged })}
           options={[{ value: 'no', label: 'No' }, { value: 'yes', label: 'Yes' }]}
         />
+          </>
+        )}
       </section>
 
+      {draft.opened !== 'opened' && (
+        <>
       <Button className="mt-6 w-full text-lg" disabled={todo.length > 0} onClick={onSubmit}>Show the answer</Button>
       {todo.length > 0 && <p className="mt-2 text-sm text-ink-soft" aria-live="polite">Still needed: {todo.join(', ')}.</p>}
+        </>
+      )}
     </>
   )
 }

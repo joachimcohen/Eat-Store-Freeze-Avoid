@@ -165,7 +165,7 @@ export default function App() {
         {screen === 'find' && <Find onPick={pickFood} onDateScan={() => go('date-scan')} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
         {screen === 'date-scan' && <DateScan onRead={dateScanned} onPhoto={readPhoto} onTypeInstead={() => go('confirm', true)} />}
         {screen === 'scan' && <Scan onCode={scanned} onSkip={() => go('find')} />}
-        {screen === 'confirm' && <Confirm draft={draft} update={update} onDateScan={() => go('date-scan')} onSubmit={() => go('result')} />}
+        {screen === 'confirm' && <Confirm draft={draft} update={update} onDateScan={() => go('date-scan')} onSubmit={() => go('result')} onStartAgain={startAgain} />}
         {screen === 'result' && result && draft.food && (
           <Result result={result} food={draft.food} dateLine={dateLine} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onNotRight={() => { update({ food: null }); go('confirm') }} onAgain={startAgain} />
         )}

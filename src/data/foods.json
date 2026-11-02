@@ -2103,6 +2103,12 @@
       "whatUseBy": "the use-by date",
       "whatBestBefore": "the best-before date",
       "whatWindowEnd": "the end of the guidance"
+    },
+    "openedStop": {
+      "title": "We can't help with opened food yet",
+      "text": "Our guidance covers unopened food only. Once a pack is opened, follow the instructions on the packaging, such as how to store it and how soon to use it (for example \"once opened, use within 3 days\").",
+      "useBy": "If it's past its use-by date, don't eat it.",
+      "button": "Check another food"
     }
   },
   "recipeSources": [

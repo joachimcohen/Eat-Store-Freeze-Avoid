@@ -319,3 +319,4 @@ These override anything above that disagrees.
 9. Unchecked synonyms work in the private prototype but show "match not yet checked". Before a public release, only checked synonyms work.
 10. Freezing advice is given only for prepacked fresh meat, fish and ready-to-eat meals (Foodbank Victoria). Every other category is Unknown. Storage tips stay generic and sourced (FSANZ) until sourced ones are added. The unsourced "bagged salad: not suitable for freezing" note is removed.
 11. Better Health Channel items are included with a "to review" flag until the page is checked.
+12. Choosing "Opened" stops straight away with a message: we can't help with opened food yet; follow the packaging; past its use-by date, don't eat it; if in doubt, throw it out. (The rule for opened food is unchanged.)
