@@ -1991,7 +1991,7 @@
       "freeze": "Only buy it if you'll eat or freeze it today."
     },
     "matchedTo": "{term} → matched to: {category} (Foodbank Victoria category)",
-    "matchUnchecked": "This match has not been checked yet.",
+    "matchUnchecked": "Note: the matched category was linked by AI and hasn't yet been checked by a human. Proceed with caution.",
     "disclaimer": "This tool can make mistakes. It assumes you chose the right food type and that the food is unopened, undamaged and stored as the label says. We don't check allergens or ingredients.",
     "ifInDoubt": "If in doubt, throw it out.",
     "recalls": "Check current food recalls",
@@ -2073,7 +2073,7 @@
       ],
       "rulesTitle": "The rules, in order",
       "aiTitle": "Made with the support of AI",
-      "ai": "This tool was created with the support of AI (Claude, by Anthropic), which helped write the code and draft the wording. The answers you see don't come from AI: they come from the fixed rules and the checked data file, and the sources are listed below.",
+      "ai": "This tool was created with the support of AI (Claude, by Anthropic), which helped write the code and draft the wording. AI also drafted the list linking everyday food names and barcodes to the Foodbank Victoria categories; any link not yet checked by a human is marked on screen. The answers themselves don't come from AI: they come from fixed rules and the checked data file, and the sources are listed below.",
       "countryTitle": "Acknowledgement of Country",
       "country": "This tool was created on the lands of the Wurundjeri Woi-wurrung people of the Kulin Nation in Melbourne. We acknowledge them as the Traditional Owners and pay our respects to their Elders past and present. We extend that respect to all Aboriginal and Torres Strait Islander peoples. Sovereignty was never ceded."
     },
@@ -2111,7 +2111,8 @@
       "button": "Check another food"
     },
     "dateTypeNoDate": "No date, or can't tell",
-    "dateTypeHint": "Look for the words \"Best before\" (or BB) or \"Use by\". Can't find a date, or can't tell which it is? Choose the last option and we won't guess."
+    "dateTypeHint": "Look for the words \"Best before\" (or BB) or \"Use by\". Can't find a date, or can't tell which it is? Choose the last option and we won't guess.",
+    "matchesUnchecked": "Note: these categories were linked by AI and haven't yet been checked by a human. Proceed with caution. None of these? Choose the food type below."
   },
   "recipeSources": [
     {

@@ -322,3 +322,4 @@ These override anything above that disagrees.
 12. Choosing "Opened" stops straight away with a message: we can't help with opened food yet; follow the packaging; past its use-by date, don't eat it; if in doubt, throw it out. (The rule for opened food is unchanged.)
 13. "Is it opened?" is the first question on the Confirm screen, so someone with an opened pack finds out before entering anything else.
 14. The "Not sure" date type is removed from the screen. The options are Best before, Use by, and "No date, or can't tell", with a hint on how to tell them apart. "Can't tell" gives No verified info (more cautious than treating it as use-by). The rules still accept "Not sure" as use-by, unused.
+15. Unchecked matches say: "Note: the matched category was linked by AI and hasn't yet been checked by a human. Proceed with caution." The About page says AI drafted the links between food names, barcodes and categories.

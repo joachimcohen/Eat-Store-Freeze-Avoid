@@ -212,7 +212,7 @@ function BarcodeStatus({ barcode, onUse }: { barcode: BarcodeState; onUse: (f: F
                   </li>
                 ))}
               </ul>
-              <p className="mt-2 text-sm text-ink-soft">These matches have not been checked yet. None of these? Choose the food type below.</p>
+              <p className="mt-2 text-sm font-semibold text-store">{data.wording.matchesUnchecked}</p>
             </>
           ) : (
             <p className="mt-1 text-sm">This product isn't matched to our list yet. Please choose the food type below.</p>
