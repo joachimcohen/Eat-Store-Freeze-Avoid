@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { combineReadings, readLabel } from './label'
+import { agreedReading, combineReadings, readLabel } from './label'
 
 const TODAY = '2026-11-01'
 const read = (t: string) => readLabel(t, TODAY)
@@ -67,5 +67,27 @@ describe('dot-matrix slips and combining readings', () => {
   })
   it('keeps a date type even when no reading found a date', () => {
     expect(combineReadings(['USE BY', 'nothing'], TODAY)).toMatchObject({ dateType: 'use-by', date: null })
+  })
+})
+
+describe('agreement for the live viewfinder', () => {
+  it('waits until two readings agree', () => {
+    expect(agreedReading(['USE BY 05/11/26', 'nothing'], TODAY)).toBeNull()
+    expect(agreedReading(['USE BY 05/11/26', 'USE EY 05/11/26'], TODAY)).toMatchObject({ date: '2026-11-05', dateType: 'use-by' })
+  })
+  it('ignores a one-off misread', () => {
+    expect(agreedReading(['BB 08/11/26', 'BB 05/11/26', 'BB 05/11/26'], TODAY)).toMatchObject({ date: '2026-11-05' })
+  })
+})
+
+describe('dot-matrix "BB" slips', () => {
+  it('reads PB, 8B and B8 as BB', () => {
+    expect(read('PB 21 NOV 2026').dateType).toBe('best-before')
+    expect(read('8B 21 NOV 2026').dateType).toBe('best-before')
+  })
+  it('the viewfinder takes the type from every reading of the strip', () => {
+    // Seen on a tilted yoghurt lid: one reading slipped on the year, one on "BB".
+    const r = agreedReading(['E 3\nBB 21 NOV 2028 4', 'QB 21 NOV 2026', '2 ov 202', 'E 3\nBB 21 NOV 2028 4', 'QB 21 NOV 2026'], TODAY)
+    expect(r).toMatchObject({ date: '2026-11-21', dateType: 'best-before' })
   })
 })

@@ -39,6 +39,9 @@ Open Food Facts product data is used under the Open Database Licence.
 
 ## Reading date labels
 
+The main way is the live date viewfinder: the person fits the date inside a thin box, and the app reads just that strip from the camera at full detail (contrast stretched, a local cut-off that copes with glare, and dot-matrix dots joined), frame after frame, until two readings agree. Torch and zoom buttons appear where the phone supports them. A photo is the fallback:
+
+
 Photos are read on the phone by Tesseract (text recognition running in the browser). Its files are copied into `public/ocr` by `scripts/copy-ocr-files.mjs` before each build, so nothing is fetched from elsewhere. Each photo is read four ways (plain, and with the dots of dot-matrix print joined by three amounts), and the date most readings agree on is pre-filled. On a tie the earlier date and use-by are chosen. The person always checks the result.
 
 ## Install on a phone

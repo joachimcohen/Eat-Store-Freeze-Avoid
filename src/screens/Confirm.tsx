@@ -1,5 +1,4 @@
 import { FoodPicker } from '../components/FoodPicker'
-import { PhotoButton } from '../components/PhotoButton'
 import { Button, Choice } from '../components/ui'
 import { data } from '../data'
 import { missing, type BarcodeState, type Draft } from '../draft'
@@ -27,10 +26,10 @@ export function MatchLine({ food }: { food: FoodChoice }) {
   )
 }
 
-export function Confirm({ draft, update, onPhoto, onSubmit }: {
+export function Confirm({ draft, update, onDateScan, onSubmit }: {
   draft: Draft
   update: (d: Partial<Draft>) => void
-  onPhoto: (f: File) => void
+  onDateScan: () => void
   onSubmit: () => void
 }) {
   const todo = missing(draft)
@@ -72,9 +71,9 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
 
       <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Date">
         <LabelStatus draft={draft} />
-        <PhotoButton variant={draft.barcode && label.status === 'idle' ? 'primary' : 'secondary'} onPhoto={onPhoto} className="mt-3 w-full">
-          {label.status !== 'idle' ? 'Try another photo' : draft.barcode ? '📷 Now photograph the date label' : 'Read the date from a photo'}
-        </PhotoButton>
+        <Button variant={draft.barcode && label.status === 'idle' ? 'primary' : 'secondary'} onClick={onDateScan} className="mt-3 w-full">
+          {label.status !== 'idle' ? 'Scan the date again' : draft.barcode ? 'Now scan the date label' : 'Scan the date from the label'}
+        </Button>
 
         <Choice<DateTypeChoice>
           legend="What does the label say?"
@@ -138,7 +137,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
 
 function LabelStatus({ draft }: { draft: Draft }) {
   const label = draft.label
-  if (label.status === 'idle') return <p className="text-sm text-ink-soft">Enter the date below, or read it from a photo of the label.</p>
+  if (label.status === 'idle') return <p className="text-sm text-ink-soft">Enter the date below, or scan it from the label.</p>
   if (label.status === 'reading') {
     return (
       <div role="status">

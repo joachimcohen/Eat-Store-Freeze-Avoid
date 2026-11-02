@@ -4,6 +4,13 @@
 import { createWorker, PSM, type Worker } from 'tesseract.js'
 
 let workerPromise: Promise<Worker> | null = null
+let mode: PSM | null = null
+
+async function useMode(w: Worker, m: PSM) {
+  if (mode === m) return
+  await w.setParameters({ tessedit_pageseg_mode: m })
+  mode = m
+}
 
 function getWorker(): Promise<Worker> {
   if (!workerPromise) {
@@ -18,6 +25,7 @@ function getWorker(): Promise<Worker> {
         tessedit_pageseg_mode: PSM.SPARSE_TEXT,
         tessedit_char_whitelist: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/.-: ',
       })
+      mode = PSM.SPARSE_TEXT
       return w
     })
     workerPromise.catch(() => {
@@ -135,11 +143,114 @@ export async function readLabelTexts(file: Blob, onProgress?: (p: number) => voi
     () => joinDots(canvas, grey, Math.round(base * 1.5)),
   ]
   const texts: string[] = []
+  await useMode(worker, PSM.SPARSE_TEXT)
   for (let i = 0; i < variants.length; i++) {
     onProgress?.(i / variants.length)
     texts.push((await worker.recognize(variants[i]())).data.text)
   }
   onProgress?.(1)
+  return texts
+}
+
+/**
+ * Bradley adaptive threshold: each pixel is compared with the average of
+ * its neighbourhood, so glare on one side and shadow on the other don't
+ * wash the print out (a single cut-off for the whole picture does).
+ */
+function adaptive(grey: Float32Array | Uint8ClampedArray, w: number, h: number, win: number, t = 0.13): Uint8ClampedArray {
+  const integral = new Float64Array((w + 1) * (h + 1))
+  for (let y = 0; y < h; y++) {
+    let row = 0
+    for (let x = 0; x < w; x++) {
+      row += grey[y * w + x]
+      integral[(y + 1) * (w + 1) + x + 1] = integral[y * (w + 1) + x + 1] + row
+    }
+  }
+  const out = new Uint8ClampedArray(w * h)
+  const r = Math.max(2, Math.round(win / 2))
+  for (let y = 0; y < h; y++) {
+    const y0 = Math.max(0, y - r), y1 = Math.min(h - 1, y + r)
+    for (let x = 0; x < w; x++) {
+      const x0 = Math.max(0, x - r), x1 = Math.min(w - 1, x + r)
+      const count = (x1 - x0 + 1) * (y1 - y0 + 1)
+      const sum = integral[(y1 + 1) * (w + 1) + x1 + 1] - integral[y0 * (w + 1) + x1 + 1] - integral[(y1 + 1) * (w + 1) + x0] + integral[y0 * (w + 1) + x0]
+      out[y * w + x] = grey[y * w + x] * count < sum * (1 - t) ? 0 : 255
+    }
+  }
+  return out
+}
+
+function boxBlur(grey: Uint8ClampedArray, w: number, h: number, r: number): Float32Array {
+  const tmp = new Float32Array(w * h)
+  const out = new Float32Array(w * h)
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let s = 0, n = 0
+    for (let k = -r; k <= r; k++) { const xx = x + k; if (xx >= 0 && xx < w) { s += grey[y * w + xx]; n++ } }
+    tmp[y * w + x] = s / n
+  }
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let s = 0, n = 0
+    for (let k = -r; k <= r; k++) { const yy = y + k; if (yy >= 0 && yy < h) { s += tmp[yy * w + x]; n++ } }
+    out[y * w + x] = s / n
+  }
+  return out
+}
+
+function toCanvas(pixels: ArrayLike<number>, w: number, h: number): HTMLCanvasElement {
+  const c = document.createElement('canvas')
+  c.width = w
+  c.height = h
+  const ctx = c.getContext('2d')!
+  const img = ctx.createImageData(w, h)
+  for (let i = 0; i < w * h; i++) {
+    img.data[i * 4] = img.data[i * 4 + 1] = img.data[i * 4 + 2] = pixels[i]
+    img.data[i * 4 + 3] = 255
+  }
+  ctx.putImageData(img, 0, 0)
+  return c
+}
+
+/**
+ * Reads the strip inside the date viewfinder's box. The strip is taken from
+ * the camera at full detail, scaled to a steady height, stretched to full
+ * contrast, and read three ways: plain, with a local (glare-proof) cut-off,
+ * and with dot-matrix dots joined first. Returns the text from each.
+ */
+export async function readStripTexts(strip: HTMLCanvasElement): Promise<string[]> {
+  const worker = await getWorker()
+  const targetH = 150
+  const scale = Math.min(3, targetH / strip.height, 1800 / strip.width)
+  const w = Math.max(1, Math.round(strip.width * scale))
+  const h = Math.max(1, Math.round(strip.height * scale))
+  const c = document.createElement('canvas')
+  c.width = w
+  c.height = h
+  const ctx = c.getContext('2d', { willReadFrequently: true })!
+  ctx.imageSmoothingQuality = 'high'
+  ctx.drawImage(strip, 0, 0, w, h)
+  const data = ctx.getImageData(0, 0, w, h).data
+  const grey = new Uint8ClampedArray(w * h)
+  let lo = 255, hi = 0
+  for (let i = 0; i < w * h; i++) {
+    const v = 0.299 * data[i * 4] + 0.587 * data[i * 4 + 1] + 0.114 * data[i * 4 + 2]
+    grey[i] = v
+    if (v < lo) lo = v
+    if (v > hi) hi = v
+  }
+  // Stretch to full contrast (faint ink becomes dark).
+  const range = Math.max(1, hi - lo)
+  for (let i = 0; i < grey.length; i++) grey[i] = ((grey[i] - lo) * 255) / range
+
+  const win = Math.round(h * 0.45)
+  const dotR = Math.max(1, Math.round(h / 75))
+  const variants = [
+    toCanvas(grey, w, h),
+    toCanvas(adaptive(grey, w, h, win), w, h),
+    toCanvas(adaptive(boxBlur(grey, w, h, dotR), w, h, win, 0.08), w, h),
+  ]
+  await useMode(worker, PSM.SINGLE_BLOCK)
+  const texts: string[] = []
+  for (const v of variants) texts.push((await worker.recognize(v)).data.text)
   return texts
 }
 

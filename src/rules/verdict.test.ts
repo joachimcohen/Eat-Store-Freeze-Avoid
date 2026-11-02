@@ -147,3 +147,21 @@ describe('every result names a source', () => {
     for (const c of combos) expect(run(c).sourceIds.length).toBeGreaterThan(0)
   })
 })
+
+describe('no date on the pack', () => {
+  it('pantry food: still No verified info, with the long-life explanation and FSANZ source', () => {
+    const r = run({ category: cat('oils-preserved'), dateType: 'no-date', date: null })
+    expect(r).toMatchObject({ verdict: 'no-info', reason: 'no-date', noDateHelp: 'long-life' })
+    expect(r.sourceIds).toContain('fsanz-date-marking')
+  })
+  it('baby food (no time allowed past the date) never gets the long-life explanation', () => {
+    expect(run({ category: cat('baby-food'), dateType: 'no-date', date: null }).noDateHelp).toBe('look-again')
+  })
+  it('fresh food or a food not in the list: just "look again"', () => {
+    expect(run({ category: cat('yoghurt-dips'), dateType: 'no-date', date: null }).noDateHelp).toBe('look-again')
+    expect(run({ category: null, dateType: 'no-date', date: null }).noDateHelp).toBe('look-again')
+  })
+  it('damaged still wins over no date', () => {
+    expect(run({ category: cat('oils-preserved'), dateType: 'no-date', date: null, damaged: true }).verdict).toBe('avoid')
+  })
+})

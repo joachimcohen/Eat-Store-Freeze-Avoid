@@ -1,5 +1,4 @@
 import { FoodPicker } from '../components/FoodPicker'
-import { PhotoButton } from '../components/PhotoButton'
 import { CAP_COLOURS, STICKER_TEXT } from '../components/verdictStyle'
 import { Button, Panel } from '../components/ui'
 import { data } from '../data'
@@ -13,7 +12,7 @@ const STICKERS = [
   { v: 'avoid', left: '70%', top: 104, size: 100, rot: 10, font: 24, delay: 270 },
 ] as const
 
-export function Find({ onPick, onPhoto, onScan, onQuiz }: { onPick: (f: FoodChoice) => void; onPhoto: (f: File) => void; onScan: () => void; onQuiz: () => void }) {
+export function Find({ onPick, onDateScan, onScan, onQuiz }: { onPick: (f: FoodChoice) => void; onDateScan: () => void; onScan: () => void; onQuiz: () => void }) {
   return (
     <>
       <div className="relative mx-auto mt-2 h-[226px] w-full max-w-[380px]" aria-hidden="true">
@@ -38,8 +37,8 @@ export function Find({ onPick, onPhoto, onScan, onQuiz }: { onPick: (f: FoodChoi
         <svg aria-hidden="true" width="26" height="20" viewBox="0 0 26 20" fill="currentColor"><rect x="0" width="2" height="20" /><rect x="4" width="1" height="20" /><rect x="7" width="3" height="20" /><rect x="12" width="1" height="20" /><rect x="15" width="2" height="20" /><rect x="19" width="1" height="20" /><rect x="22" width="4" height="20" /></svg>
         Scan the barcode
       </Button>
-      <PhotoButton variant="secondary" onPhoto={onPhoto} className="mt-3 w-full">Or photograph the date label</PhotoButton>
-      <p className="mt-2 text-center text-sm text-ink-soft">Photos are read on this phone and never uploaded.</p>
+      <Button variant="secondary" onClick={onDateScan} className="mt-3 w-full">Or scan the date label</Button>
+      <p className="mt-2 text-center text-sm text-ink-soft">The camera is read on this phone and nothing is uploaded.</p>
 
       <Panel label="Find a food">
         <FoodPicker onPick={onPick} />

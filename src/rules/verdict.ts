@@ -28,6 +28,7 @@ function result(
     useByWarning: false,
     extraCare: verdict === 'eat' || verdict === 'freeze',
     recallsLink: verdict === 'avoid',
+    noDateHelp: null,
     sourceIds: [FOODBANK],
     ...extra,
   }
@@ -41,7 +42,14 @@ export function decideVerdict(input: VerdictInput): VerdictResult {
   if (!storedProperly) return result('avoid', 'not-stored', 'checks', { sourceIds: [FSANZ_STORING, FOODBANK] })
 
   // No date on the pack (or no date entered): nothing to work from.
-  if (input.dateType === 'no-date' || !input.date) return result('no-info', 'no-date', 'checks')
+  if (input.dateType === 'no-date' || !input.date) {
+    // Pantry food often keeps 2 years or more and needs no date. Explain, but
+    // still give no answer: we don't know how long this food keeps.
+    const pantry = category !== null && category.group === 'pantry' && category.guidance !== null
+    return result('no-info', 'no-date', 'checks', pantry
+      ? { noDateHelp: 'long-life', sourceIds: [FSANZ_DATES, FOODBANK] }
+      : { noDateHelp: 'look-again' })
+  }
   const date = input.date
 
   // "Not sure" is treated as use-by. A use-by date always gets the use-by

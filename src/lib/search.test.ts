@@ -35,3 +35,9 @@ describe('food from label text', () => {
     expect(foodFromLabelText('BEST BEFORE 12 MAR 26 L1234')).toBeNull()
   })
 })
+
+describe('honey', () => {
+  it('is found, as an unchecked match', () => {
+    expect(searchFoods('honey')[0]).toMatchObject({ term: 'honey', category: { id: 'shelf-stable-other' }, checked: false })
+  })
+})

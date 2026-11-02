@@ -36,6 +36,8 @@ function fixDigits(text: string): string {
 function normalise(text: string): string {
   let t = text.toUpperCase().replace(/[‐-―]/g, '-')
   t = t.replace(/\b0CT\b/g, 'OCT').replace(/\bN0V\b/g, 'NOV').replace(/\bJUI\b/g, 'JUL').replace(/\bHAR\b/g, 'MAR').replace(/\bHAY\b/g, 'MAY')
+    // Dot-matrix "BB" is often read as PB, 8B or B8.
+    .replace(/\b(?:[P8]B|B[P8])\b/g, 'BB')
   return fixDigits(t)
 }
 
@@ -153,4 +155,23 @@ export function combineReadings(texts: string[], today: string): LabelReading {
   // On a tie between types, use-by (the more careful choice).
   const dateType = types.length === 0 ? null : useBy >= bestBefore ? 'use-by' : 'best-before'
   return { ...(chosen.find((r) => r.dateType && r.matchedText) ?? chosen[0]), dateType }
+}
+
+/**
+ * For the live viewfinder: the date that at least `votes` separate readings
+ * agree on (with its date type), or null if there isn't one yet.
+ */
+export function agreedReading(texts: string[], today: string, votes = 2): LabelReading | null {
+  const readings = texts.map((t) => readLabel(t, today)).filter((r) => r.date)
+  const counts = new Map<string, number>()
+  for (const r of readings) counts.set(r.date!, (counts.get(r.date!) ?? 0) + 1)
+  const top = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]
+  if (!top || top[1] < votes) return null
+  // Date: the one that was agreed. Type: voted on by every reading of the
+  // strip, since a reading can catch the words but slip on a digit.
+  const chosen = combineReadings(texts.filter((t) => readLabel(t, today).date === top[0]), today)
+  const types = texts.map((t) => readLabel(t, today).dateType).filter((t) => t !== null)
+  const useBy = types.filter((t) => t === 'use-by').length
+  const dateType = types.length === 0 ? null : useBy >= types.length - useBy ? 'use-by' : 'best-before'
+  return { ...chosen, dateType }
 }

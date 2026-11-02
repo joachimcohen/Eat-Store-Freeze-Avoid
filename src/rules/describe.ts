@@ -22,6 +22,8 @@ const fill = (t: string, values: Record<string, string>) => t.replace(/\{(\w+)\}
 export function describeResult(r: VerdictResult): ResultLines {
   const w = data.wording
   const facts: { label: string; text: string }[] = []
+  if (r.noDateHelp) facts.push({ label: w.noDate.lookAgainLabel, text: w.noDate.lookAgain })
+  if (r.noDateHelp === 'long-life') facts.push({ label: w.noDate.longLifeLabel, text: w.noDate.longLife })
   if (r.generalUseByRules) facts.push({ label: 'Rules used', text: w.generalUseByRules })
   if (r.useByWarning && r.reason !== 'use-by-passed') facts.push({ label: 'Use-by', text: w.useByWarning })
   if (r.whatToCheck) facts.push({ label: 'Check', text: r.whatToCheck })

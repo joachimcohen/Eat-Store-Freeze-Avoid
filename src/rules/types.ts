@@ -74,6 +74,8 @@ export type VerdictResult = {
   extraCare: boolean
   /** Link to FSANZ recalls: Avoid results. */
   recallsLink: boolean
+  /** No date on the pack: which help to show (look again; long-life explanation for pantry food). */
+  noDateHelp: 'long-life' | 'look-again' | null
   /** Sources behind this answer, most important first. */
   sourceIds: string[]
 }

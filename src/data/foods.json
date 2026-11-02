@@ -1662,6 +1662,13 @@
       "usualDateType": "use-by",
       "note": null,
       "checked": false
+    },
+    {
+      "term": "honey",
+      "categoryId": "shelf-stable-other",
+      "usualDateType": "best-before",
+      "note": "Not named in the guide. Often has no date (keeps 2 years or more).",
+      "checked": false
     }
   ],
   "notCovered": {
@@ -2038,6 +2045,14 @@
       "privacy": "No accounts, cookies or tracking. Photos and camera frames are read on your phone and never uploaded. When you scan a barcode, only the barcode number is sent to Open Food Facts. Your quiz score, barcode choices and settings are kept on this phone only.",
       "creditsTitle": "Credits",
       "credits": "Product data from Open Food Facts, under the Open Database Licence. Recipe ideas link to OzHarvest, Foodbank Victoria and Foodbank SA and NT; recipes stay with their owners."
+    },
+    "noDate": {
+      "_note": "The long-life line is from FSANZ Standard 1.2.5 (food that keeps 2 years or more doesn't need a best-before date). Check the wording against the source before release.",
+      "checked": false,
+      "lookAgainLabel": "Look again",
+      "lookAgain": "Check the whole pack for a date: on tins and jars it's often stamped on the bottom or lid, and on packets it can be on the back, a flap or the seal.",
+      "longLifeLabel": "Long-life food",
+      "longLife": "In Australia, food that keeps for 2 years or more doesn't need a best-before date, so some tins, honey and dry goods have none. That doesn't tell us how long this one keeps, so we can't give an answer."
     }
   },
   "recipeSources": [
@@ -2136,7 +2151,8 @@
       "en:frozen-pizzas": "frozen-other",
       "en:breads": "fresh-bread",
       "en:sliced-breads": "fresh-bread",
-      "en:cheddar-cheese": "hard-cheese"
+      "en:cheddar-cheese": "hard-cheese",
+      "en:honeys": "shelf-stable-other"
     },
     "nameMustSay": {
       "_note": "Some products are tagged inconsistently in Open Food Facts (for example fresh milk tagged as UHT). These categories are only suggested when the product name also says one of these words; otherwise the product is treated as fresh milk, which we don't cover yet.",

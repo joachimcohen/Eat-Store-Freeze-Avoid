@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Sheet } from './components/Sheet'
 import { data } from './data'
 import { emptyDraft, type Draft } from './draft'
-import { combineReadings } from './lib/label'
+import { combineReadings, type LabelReading } from './lib/label'
 import { readLabelTexts } from './lib/ocr'
 import { foodFromLabelText, type FoodChoice } from './lib/search'
 import { lookupProduct, matchProduct, rememberedFood, rememberFood } from './lib/products'
@@ -14,11 +14,12 @@ import { Quiz } from './screens/Quiz'
 import { Result } from './screens/Result'
 import { RulesCheck } from './screens/RulesCheck'
 import { Scan } from './screens/Scan'
+import { DateScan } from './screens/DateScan'
 import { About } from './screens/About'
 import { DidYouKnow, Disclaimer } from './screens/Intro'
 import { prefs } from './lib/prefs'
 
-type Screen = 'find' | 'scan' | 'confirm' | 'result' | 'rules' | 'quiz' | 'disclaimer' | 'disclaimer-again' | 'fact' | 'about'
+type Screen = 'find' | 'scan' | 'date-scan' | 'confirm' | 'result' | 'rules' | 'quiz' | 'disclaimer' | 'disclaimer-again' | 'fact' | 'about'
 
 export default function App() {
   const [screen, setScreenState] = useState<Screen>(() => {
@@ -34,8 +35,12 @@ export default function App() {
   const main = useRef<HTMLDivElement>(null)
 
   // Phone back button moves between screens.
-  const go = useCallback((next: Screen) => {
-    history.pushState({ screen: next }, '', next === 'rules' || next === 'quiz' || next === 'about' ? `#${next}` : location.pathname)
+  // replace: swap the current screen in history (the scanners use it, so
+  // Back from Confirm doesn't reopen the camera).
+  const go = useCallback((next: Screen, replace = false) => {
+    const url = next === 'rules' || next === 'quiz' || next === 'about' ? `#${next}` : location.pathname
+    if (replace) history.replaceState({ screen: next }, '', url)
+    else history.pushState({ screen: next }, '', url)
     setScreenState(next)
   }, [])
   useEffect(() => {
@@ -89,7 +94,7 @@ export default function App() {
   const readPhoto = async (file: File) => {
     const run = ++photoRun.current
     setDraft((d) => ({ ...d, label: { status: 'reading', progress: 0 } }))
-    if (screen !== 'confirm') go('confirm')
+    if (screen !== 'confirm') go('confirm', screen === 'date-scan')
     try {
       const texts = await readLabelTexts(file, (progress) => {
         if (run === photoRun.current) setDraft((d) => (d.label.status === 'reading' ? { ...d, label: { status: 'reading', progress } } : d))
@@ -108,6 +113,18 @@ export default function App() {
       if (run === photoRun.current) setDraft((d) => ({ ...d, label: { status: 'failed' } }))
     }
   }
+
+  // The live date viewfinder agreed on a date: pre-fill it for checking.
+  const dateScanned = useCallback((reading: LabelReading, texts: string[]) => {
+    photoRun.current++
+    setDraft((d) => ({
+      ...d,
+      label: { status: 'done', reading, suggestedFood: d.food ? null : foodFromLabelText(texts.join('\n')) },
+      dateType: reading.dateType ?? d.dateType,
+      date: reading.date ?? d.date,
+    }))
+    go('confirm', true)
+  }, [go])
 
   const result = draft.food && draft.dateType
     ? decideVerdict({
@@ -143,13 +160,14 @@ export default function App() {
       }
     >
       <div ref={main}>
-        {screen === 'find' && <Find onPick={pickFood} onPhoto={readPhoto} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
+        {screen === 'find' && <Find onPick={pickFood} onDateScan={() => go('date-scan')} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
+        {screen === 'date-scan' && <DateScan onRead={dateScanned} onPhoto={readPhoto} onTypeInstead={() => go('confirm', true)} />}
         {screen === 'scan' && <Scan onCode={scanned} onSkip={() => go('find')} />}
-        {screen === 'confirm' && <Confirm draft={draft} update={update} onPhoto={readPhoto} onSubmit={() => go('result')} />}
+        {screen === 'confirm' && <Confirm draft={draft} update={update} onDateScan={() => go('date-scan')} onSubmit={() => go('result')} />}
         {screen === 'result' && result && draft.food && (
           <Result result={result} food={draft.food} dateLine={dateLine} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onNotRight={() => { update({ food: null }); go('confirm') }} onAgain={startAgain} />
         )}
-        {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
+        {screen === 'result' && !result && <Find onPick={pickFood} onDateScan={() => go('date-scan')} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
         {screen === 'rules' && <RulesCheck />}
         {screen === 'quiz' && <Quiz onDone={startAgain} />}
         {screen === 'disclaimer' && <Disclaimer onAccept={() => { prefs.acceptDisclaimer(); setScreenState(prefs.factsHidden() ? 'find' : 'fact') }} />}
