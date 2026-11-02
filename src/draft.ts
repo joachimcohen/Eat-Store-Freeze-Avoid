@@ -35,10 +35,10 @@ export const emptyDraft: Draft = {
 /** What still needs answering before a verdict can be shown. */
 export function missing(d: Draft): string[] {
   const out: string[] = []
+  if (!d.opened) out.push('opened or unopened')
   if (!d.food) out.push('the food')
   if (!d.dateType) out.push('the date type')
   if (d.dateType && d.dateType !== 'no-date' && !d.date) out.push('the date')
-  if (!d.opened) out.push('opened or unopened')
   if (!d.stored) out.push('how it was stored')
   if (!d.damaged) out.push('whether the pack is damaged')
   return out

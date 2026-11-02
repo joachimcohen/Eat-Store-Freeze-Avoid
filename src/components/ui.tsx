@@ -23,10 +23,10 @@ export function Choice<T extends string>({ legend, name, options, value, onChang
       <legend className="font-extrabold">{legend}</legend>
       {hint && <p className="mt-1 text-sm text-ink-soft">{hint}</p>}
       <div className="mt-2 grid grid-cols-2 gap-2">
-        {options.map((o) => (
+        {options.map((o, i) => (
           <label
             key={o.value}
-            className={`flex min-h-12 cursor-pointer items-center justify-center rounded-full border-2 px-3 text-center font-semibold transition has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-[#1f6fd1] ${
+            className={`${options.length % 2 === 1 && i === options.length - 1 ? 'col-span-2 ' : ''}flex min-h-12 cursor-pointer items-center justify-center rounded-full border-2 px-3 text-center font-semibold transition has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-[#1f6fd1] ${
               value === o.value ? 'border-ink bg-ink text-white' : 'border-rule bg-white hover:border-ink'
             }`}
           >

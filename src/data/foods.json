@@ -1975,7 +1975,7 @@
       "best-before-no-window": "This food is never shown as OK past its date.",
       "outside-guidance": "This is outside the guidance we use, so we can't say it's OK.",
       "opened": "The guidance we use covers unopened food only.",
-      "no-date": "We can only help when the pack has a date.",
+      "no-date": "We can only help when we know the date and whether it's best before or use by.",
       "not-in-list": "This food isn't in our checked list yet."
     },
     "eatByAbout": "Generally OK to eat until about {date}.",
@@ -2030,8 +2030,8 @@
       "howTitle": "How it works",
       "how": [
         "If the pack is damaged, swollen or leaking, or hasn't been stored as the label says: Avoid.",
-        "If there's no date on the pack: No verified info.",
-        "Use-by dates (and \"Not sure\") follow the use-by rules for every food: after the date, Avoid. On the date or the day before, Freeze if the food can be frozen, otherwise eat it today. Before that, Store.",
+        "If there's no date on the pack, or you can't tell which kind of date it is: No verified info.",
+        "Use-by dates follow the use-by rules for every food: after the date, Avoid. On the date or the day before, Freeze if the food can be frozen, otherwise eat it today. Before that, Store.",
         "If the pack has been opened: No verified info. The guidance we use covers unopened food only.",
         "Best-before dates: on or before the date, Store. After the date, Eat if it's within the guidance window for that food, otherwise Avoid. Baby food is never shown as OK past its date.",
         "Foods that aren't in our list get No verified info, never a guess."
@@ -2056,11 +2056,11 @@
         },
         {
           "title": "You enter the date",
-          "text": "Choose best before or use by, and type the date from the pack. Not sure which? We treat it as use-by, to be careful."
+          "text": "Choose best before or use by, and type the date from the pack. Can't tell which it is? Choose \"No date, or can't tell\" and we won't guess."
         },
         {
           "title": "You answer three quick questions",
-          "text": "Is it opened? Has it been stored as the label says? Is the pack damaged, swollen or leaking?"
+          "text": "Is it opened? (We can only help with unopened food.) Has it been stored as the label says? Is the pack damaged, swollen or leaking?"
         },
         {
           "title": "Fixed rules work out the answer",
@@ -2109,7 +2109,9 @@
       "text": "Our guidance covers unopened food only. Once a pack is opened, follow the instructions on the packaging, such as how to store it and how soon to use it (for example \"once opened, use within 3 days\").",
       "useBy": "If it's past its use-by date, don't eat it.",
       "button": "Check another food"
-    }
+    },
+    "dateTypeNoDate": "No date, or can't tell",
+    "dateTypeHint": "Look for the words \"Best before\" (or BB) or \"Use by\". Can't find a date, or can't tell which it is? Choose the last option and we won't guess."
   },
   "recipeSources": [
     {

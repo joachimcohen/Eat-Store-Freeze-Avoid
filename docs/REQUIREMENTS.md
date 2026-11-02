@@ -320,3 +320,5 @@ These override anything above that disagrees.
 10. Freezing advice is given only for prepacked fresh meat, fish and ready-to-eat meals (Foodbank Victoria). Every other category is Unknown. Storage tips stay generic and sourced (FSANZ) until sourced ones are added. The unsourced "bagged salad: not suitable for freezing" note is removed.
 11. Better Health Channel items are included with a "to review" flag until the page is checked.
 12. Choosing "Opened" stops straight away with a message: we can't help with opened food yet; follow the packaging; past its use-by date, don't eat it; if in doubt, throw it out. (The rule for opened food is unchanged.)
+13. "Is it opened?" is the first question on the Confirm screen, so someone with an opened pack finds out before entering anything else.
+14. The "Not sure" date type is removed from the screen. The options are Best before, Use by, and "No date, or can't tell", with a hint on how to tell them apart. "Can't tell" gives No verified info (more cautious than treating it as use-by). The rules still accept "Not sure" as use-by, unused.
