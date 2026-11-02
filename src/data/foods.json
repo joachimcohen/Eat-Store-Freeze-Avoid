@@ -1992,7 +1992,7 @@
     },
     "matchedTo": "{term} → matched to: {category} (Foodbank Victoria category)",
     "matchUnchecked": "This match has not been checked yet.",
-    "disclaimer": "General guidance only, not medical or legal advice. It assumes the food is unopened, undamaged and stored as the label says. We don't check allergens or ingredients.",
+    "disclaimer": "Guidance, not advice, and this tool can make mistakes. It assumes you chose the right food type and that the food is unopened, undamaged and stored as the label says. We don't check allergens or ingredients.",
     "ifInDoubt": "If in doubt, throw it out.",
     "recalls": "Check current food recalls",
     "sourceLine": "Source: {source}. Last reviewed {date}.",
@@ -2006,14 +2006,16 @@
     },
     "firstVisit": {
       "title": "Before you start",
+      "lead": "This is guidance, not advice.",
       "points": [
-        "This app gives general guidance about date labels. It isn't medical or legal advice.",
-        "Answers assume the food is unopened, undamaged and stored as the label says.",
-        "It doesn't check allergens or ingredients.",
-        "Best-before guidance comes from Foodbank Victoria's suggestions for food relief, not a guarantee.",
-        "If in doubt, throw it out."
+        "Eat, Store, Freeze, Avoid gives general guidance about date labels. It isn't medical, legal or food safety advice.",
+        "It can make mistakes. Read each answer and its reasons carefully, and check them against the pack.",
+        "You choose the food type. Make sure it matches the food in your hand: the answer is only as good as that choice.",
+        "Answers assume the food is unopened, undamaged and stored as the label says. The app doesn't check allergens or ingredients.",
+        "Best-before guidance comes from Foodbank Victoria's suggestions for food relief. It isn't a guarantee."
       ],
-      "button": "I understand"
+      "closing": "If in doubt, throw it out.",
+      "button": "I understand: guidance, not advice"
     },
     "didYouKnow": {
       "title": "Did you know?",
@@ -2025,7 +2027,7 @@
     "about": {
       "title": "About this app",
       "intro": "Eat, Store, Freeze, Avoid helps you understand date labels. Every answer comes from one checked data file and shows where it came from. Nothing you type or photograph leaves your phone, apart from a barcode number when you scan one.",
-      "howTitle": "How answers are worked out",
+      "howTitle": "How it works",
       "how": [
         "If the pack is damaged, swollen or leaking, or hasn't been stored as the label says: Avoid.",
         "If there's no date on the pack: No verified info.",
@@ -2046,7 +2048,34 @@
       "privacyTitle": "Privacy",
       "privacy": "No accounts, cookies or tracking. Photos and camera frames are read on your phone and never uploaded. When you scan a barcode, only the barcode number is sent to Open Food Facts. Your quiz score, barcode choices and settings are kept on this phone only.",
       "creditsTitle": "Credits",
-      "credits": "Product data from Open Food Facts, under the Open Database Licence. Recipe ideas link to OzHarvest, Foodbank Victoria and Foodbank SA and NT; recipes stay with their owners."
+      "credits": "Product data from Open Food Facts, under the Open Database Licence. Recipe ideas link to OzHarvest, Foodbank Victoria and Foodbank SA and NT; recipes stay with their owners.",
+      "steps": [
+        {
+          "title": "You choose the food",
+          "text": "Search, browse or scan the barcode, then pick the food type that matches. It's up to you to choose the right one: the answer depends on it."
+        },
+        {
+          "title": "You enter the date",
+          "text": "Choose best before or use by, and type the date from the pack. Not sure which? We treat it as use-by, to be careful."
+        },
+        {
+          "title": "You answer three quick questions",
+          "text": "Is it opened? Has it been stored as the label says? Is the pack damaged, swollen or leaking?"
+        },
+        {
+          "title": "Fixed rules work out the answer",
+          "text": "There's no guessing. Every answer comes from the rules below and a data file built from the sources listed, and shows where it came from."
+        },
+        {
+          "title": "You decide",
+          "text": "Read the answer and the reasons carefully. This is guidance, not advice, and it can be wrong. If in doubt, throw it out."
+        }
+      ],
+      "rulesTitle": "The rules, in order",
+      "aiTitle": "Made with the support of AI",
+      "ai": "This tool was created with the support of AI (Claude, by Anthropic), which helped write the code and draft the wording. The answers you see don't come from AI: they come from the fixed rules and the checked data file, and the sources are listed below.",
+      "countryTitle": "Acknowledgement of Country",
+      "country": "This tool was created on the lands of the Wurundjeri Woi-wurrung people of the Kulin Nation in Melbourne. We acknowledge them as the Traditional Owners and pay our respects to their Elders past and present. We extend that respect to all Aboriginal and Torres Strait Islander peoples. Sovereignty was never ceded."
     },
     "noDate": {
       "_note": "The long-life line is from FSANZ Standard 1.2.5 (food that keeps 2 years or more doesn't need a best-before date). Check the wording against the source before release.",
@@ -2055,7 +2084,10 @@
       "lookAgain": "Check the whole pack for a date: on tins and jars it's often stamped on the bottom or lid, and on packets it can be on the back, a flap or the seal.",
       "longLifeLabel": "Long-life food",
       "longLife": "In Australia, food that keeps for 2 years or more doesn't need a best-before date, so some tins, honey and dry goods have none. That doesn't tell us how long this one keeps, so we can't give an answer."
-    }
+    },
+    "disclaimerTitle": "Guidance, not advice",
+    "checkFoodType": "Check this matches the food in your hand. The answer depends on it.",
+    "footerCountry": "Created on Wurundjeri Woi-wurrung Country, Melbourne."
   },
   "recipeSources": [
     {

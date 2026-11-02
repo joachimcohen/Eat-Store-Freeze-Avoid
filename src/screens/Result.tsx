@@ -57,10 +57,17 @@ export function Result({ result, food, dateLine = null, fromBarcode = false, onC
 
       {showRecipes && <Recipes food={food} />}
 
+      <section aria-label={data.wording.disclaimerTitle} className="mt-5 flex gap-3 rounded-[22px] border-2 border-ink bg-white p-4">
+        <span aria-hidden="true" className="grid size-7 shrink-0 place-items-center rounded-full bg-ink text-sm font-extrabold text-white">!</span>
+        <span>
+          <span className="block font-extrabold">{data.wording.disclaimerTitle}</span>
+          <span className="mt-0.5 block text-sm">{data.wording.disclaimer}</span>
+        </span>
+      </section>
+
       <div className="mt-4 text-xs leading-relaxed text-ink-soft">
         {lines.sources.map((s) => <p key={s}>{s}</p>)}
         {fromBarcode && <p>Product data from Open Food Facts (Open Database Licence).</p>}
-        <p className="mt-2">{data.wording.disclaimer}</p>
       </div>
 
       <div className="mt-6 grid gap-3">

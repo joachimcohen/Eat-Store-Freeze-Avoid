@@ -1,5 +1,5 @@
 import { FoodPicker } from '../components/FoodPicker'
-import { CAP_COLOURS, STICKER_TEXT } from '../components/verdictStyle'
+import { CAP_COLOURS, STICKER_TEXT, VerdictIcon } from '../components/verdictStyle'
 import { Button, Panel } from '../components/ui'
 import { data } from '../data'
 import type { FoodChoice } from '../lib/search'
@@ -21,10 +21,11 @@ export function Find({ onPick, onDateScan, onScan, onQuiz }: { onPick: (f: FoodC
         {STICKERS.map((s) => (
           <span
             key={s.v}
-            className="sticker stick absolute flex items-center justify-center font-extrabold"
-            style={{ left: s.left, top: s.top, width: s.size, height: s.size, rotate: `${s.rot}deg`, background: CAP_COLOURS[s.v], color: STICKER_TEXT[s.v], fontSize: s.font, animationDelay: `${s.delay}ms` }}
+            className="sticker stick absolute flex flex-col items-center justify-center font-extrabold leading-none"
+            style={{ left: s.left, top: s.top, width: s.size, height: s.size, rotate: `${s.rot}deg`, background: CAP_COLOURS[s.v], color: STICKER_TEXT[s.v], fontSize: s.font * 0.86, animationDelay: `${s.delay}ms` }}
           >
-            {data.wording.verdicts[s.v].label}
+            <VerdictIcon verdict={s.v} size={Math.round(s.size * 0.24)} />
+            <span className="mt-1">{data.wording.verdicts[s.v].label}</span>
           </span>
         ))}
         <span className="print absolute bottom-3 left-3 -rotate-2 rounded-full bg-white px-3 py-1.5 text-[11px] shadow-[0_1px_0_#0000001a]">Best before? Use by? Let's check.</span>
@@ -50,7 +51,11 @@ export function Find({ onPick, onDateScan, onScan, onQuiz }: { onPick: (f: FoodC
         className="mt-4 flex w-full items-center gap-4 rounded-[22px] bg-ink p-4 text-left text-white transition hover:brightness-125 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#1f6fd1]"
       >
         <span aria-hidden="true" className="grid shrink-0 grid-cols-2 gap-1">
-          {(['eat', 'store', 'freeze', 'avoid'] as const).map((v) => <span key={v} className="block size-[18px] rounded-full" style={{ background: CAP_COLOURS[v] }} />)}
+          {(['eat', 'store', 'freeze', 'avoid'] as const).map((v) => (
+            <span key={v} className="grid size-7 place-items-center rounded-full" style={{ background: CAP_COLOURS[v], color: STICKER_TEXT[v] }}>
+              <VerdictIcon verdict={v} size={15} />
+            </span>
+          ))}
         </span>
         <span>
           <span className="display block text-lg leading-tight">Quiz: Eat, Store, Freeze or Avoid?</span>

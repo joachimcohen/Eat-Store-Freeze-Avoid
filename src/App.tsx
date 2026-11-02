@@ -28,6 +28,7 @@ export default function App() {
     if (location.hash === '#rules') return 'rules'
     if (location.hash === '#quiz') return 'quiz'
     if (location.hash === '#about') return 'about'
+    if (location.hash === '#scan') return 'scan'
     return prefs.factsHidden() ? 'find' : 'fact'
   })
   const [draft, setDraft] = useState<Draft>(emptyDraft)
@@ -146,9 +147,10 @@ export default function App() {
   return (
     <Sheet
       onHome={startAgain}
-      footer={screen === 'disclaimer' ? <p>Private prototype. General guidance only.</p> :
+      footer={screen === 'disclaimer' ? <p>Private prototype. Guidance, not advice.</p> :
         <>
-          <p>Private prototype. General guidance only.</p>
+          <p>Private prototype. Guidance, not advice.</p>
+          <p className="mt-1">{data.wording.footerCountry}</p>
           <p className="mt-2">
             <FooterLink onClick={() => go('about')}>About and sources</FooterLink>
             <span aria-hidden="true"> · </span>

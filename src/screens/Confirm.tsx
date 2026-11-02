@@ -50,6 +50,10 @@ export function Confirm({ draft, update, onDateScan, onSubmit }: {
           <>
             <p className="text-sm text-ink-soft">Food</p>
             <MatchLine food={draft.food} />
+            <p className="mt-2 flex items-start gap-2 rounded-xl bg-paper px-3 py-2 text-sm font-semibold">
+              <span aria-hidden="true" className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-ink text-[11px] text-white">!</span>
+              {data.wording.checkFoodType}
+            </p>
             {draft.barcode?.status === 'remembered' && <p className="mt-1 text-sm text-ink-soft">You chose this for barcode {draft.barcode.code} before.</p>}
             {draft.barcode && draft.barcode.status !== 'remembered' && <p className="mt-1 text-sm text-ink-soft">Barcode {draft.barcode.code}</p>}
             <Button variant="link" className="mt-1 -ml-1" onClick={() => update({ food: null })}>Not right? Choose another</Button>

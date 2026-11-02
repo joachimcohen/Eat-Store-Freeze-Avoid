@@ -9,6 +9,7 @@ export function Disclaimer({ onAccept, again = false }: { onAccept: () => void; 
   return (
     <>
       <h1 tabIndex={-1} className="display mt-6 text-3xl font-semibold">{w.title}</h1>
+      <p className="display mt-4 rounded-[22px] bg-ink px-5 py-4 text-2xl leading-tight text-white">{w.lead}</p>
       <ul className="mt-4 grid gap-3">
         {w.points.map((p) => (
           <li key={p} className="flex gap-3 rounded-2xl bg-white p-3 shadow-card">
@@ -17,7 +18,9 @@ export function Disclaimer({ onAccept, again = false }: { onAccept: () => void; 
           </li>
         ))}
       </ul>
-      <Button className="mt-6 w-full text-lg" onClick={onAccept}>{again ? 'Back' : w.button}</Button>
+      <p className="display mt-5 text-center text-2xl">{w.closing}</p>
+      <Button className="mt-5 w-full text-lg" onClick={onAccept}>{again ? 'Back' : w.button}</Button>
+      <p className="mt-6 text-center text-sm text-ink-soft">{data.wording.footerCountry}</p>
     </>
   )
 }

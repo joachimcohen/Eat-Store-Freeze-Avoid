@@ -1,11 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <rect width="512" height="512" rx="112" fill="#f7f5f0"/>
-  <circle cx="170" cy="190" r="104" fill="#178a45"/>
-  <circle cx="336" cy="170" r="96" fill="#1f6fd1"/>
-  <circle cx="200" cy="350" r="92" fill="#f2a516"/>
-  <circle cx="350" cy="340" r="84" fill="#d22f27"/>
-  <g fill="none" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M128 192l30 30 54-60" stroke="#fff"/>
-    <path d="M318 316l64 48M382 316l-64 48" stroke="#fff"/>
+  <circle cx="166" cy="166" r="104" fill="#157f40"/>
+  <circle cx="346" cy="166" r="104" fill="#f2a516"/>
+  <circle cx="166" cy="346" r="104" fill="#1b63c6"/>
+  <circle cx="346" cy="346" r="104" fill="#d22f27"/>
+  <g fill="none" stroke-width="20" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M118 170l34 34 62-66" stroke="#fff"/>
+    <g stroke="#141414"><rect x="304" y="122" width="84" height="84" rx="10"/><path d="M304 150h84M332 174h28"/></g>
+    <g stroke="#fff"><path d="M166 296v100M123 321l86 50M209 321l-86 50"/></g>
+    <path d="M310 310l72 72M382 310l-72 72" stroke="#fff"/>
   </g>
 </svg>

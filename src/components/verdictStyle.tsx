@@ -57,11 +57,13 @@ export function VerdictSticker({ verdict, label, size = 'lg' }: { verdict: Verdi
 }
 
 /** Four little dots, one per verdict. */
-export function Dots({ size = 14 }: { size?: number }) {
+export function Dots({ size = 18 }: { size?: number }) {
   return (
     <span aria-hidden="true" className="inline-flex gap-1">
       {(['eat', 'store', 'freeze', 'avoid'] as const).map((v) => (
-        <span key={v} className="block rounded-full" style={{ width: size, height: size, background: CAP_COLOURS[v] }} />
+        <span key={v} className="grid place-items-center rounded-full" style={{ width: size, height: size, background: CAP_COLOURS[v], color: STICKER_TEXT[v] }}>
+          <VerdictIcon verdict={v} size={Math.round(size * 0.6)} />
+        </span>
       ))}
     </span>
   )

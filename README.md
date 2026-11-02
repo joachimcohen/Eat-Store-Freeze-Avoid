@@ -71,3 +71,9 @@ npm test               # all rule, data and wording checks
 npm run check-links    # checks every recipe link
 npm run check-links -- --fix   # hides links that are gone (404 or 410)
 ```
+
+## Acknowledgements
+
+This tool was created on the lands of the Wurundjeri Woi-wurrung people of the Kulin Nation in Melbourne. We acknowledge them as the Traditional Owners and pay our respects to their Elders past and present.
+
+It was created with the support of AI (Claude, by Anthropic), which helped write the code and draft the wording. The answers in the app don't come from AI: they come from fixed rules and the checked data file.

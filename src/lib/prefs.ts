@@ -10,8 +10,10 @@ function set(key: string, value: string | null) {
 }
 
 export const prefs = {
-  disclaimerAccepted: () => get(KEYS.disclaimer) === '1',
-  acceptDisclaimer: () => set(KEYS.disclaimer, '1'),
+  // Version 2: the stronger "guidance, not advice" wording. Everyone who
+  // accepted the old one sees the new one once.
+  disclaimerAccepted: () => get(KEYS.disclaimer) === '2',
+  acceptDisclaimer: () => set(KEYS.disclaimer, '2'),
   factsHidden: () => get(KEYS.hideFacts) === '1',
   setFactsHidden: (hidden: boolean) => set(KEYS.hideFacts, hidden ? '1' : null),
 }
