@@ -1836,7 +1836,21 @@
       "en:frozen-vegetables": "frozen-other",
       "en:frozen-pizzas": "frozen-other",
       "en:breads": "fresh-bread",
-      "en:sliced-breads": "fresh-bread"
+      "en:sliced-breads": "fresh-bread",
+      "en:cheddar-cheese": "hard-cheese"
+    },
+    "nameMustSay": {
+      "_note": "Some products are tagged inconsistently in Open Food Facts (for example fresh milk tagged as UHT). These categories are only suggested when the product name also says one of these words; otherwise the product is treated as fresh milk, which we don't cover yet.",
+      "uht-milk": [
+        "uht",
+        "long life",
+        "long-life"
+      ],
+      "uht-non-dairy": [
+        "uht",
+        "long life",
+        "long-life"
+      ]
     }
   }
 }

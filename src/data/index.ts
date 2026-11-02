@@ -55,7 +55,7 @@ export type FoodData = {
   notCovered: { message: string; terms: string[] }
   facts: Fact[]
   quiz: QuizQuestion[]
-  offCategories: { note: string; checked: boolean; map: Record<string, string> }
+  offCategories: { note: string; checked: boolean; map: Record<string, string>; nameMustSay: Record<string, string[] | string> }
   recipeSources: { id: string; name: string; url: string; checked: boolean; broken?: boolean }[]
   wording: typeof raw.wording
 }

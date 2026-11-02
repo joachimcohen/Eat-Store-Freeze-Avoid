@@ -181,7 +181,12 @@ function BarcodeStatus({ barcode, onUse }: { barcode: BarcodeState; onUse: (f: F
         <div role="status" className={box}>
           <p className="text-sm text-ink-soft">Barcode {barcode.code}</p>
           <p className="font-semibold">{product}</p>
-          {barcode.suggestion ? (
+          {barcode.suggestion?.kind === 'not-covered' ? (
+            <>
+              <p className="mt-2 text-sm">This looks like a food we don't have checked information for yet, such as fresh milk. If it's long-life (UHT) milk, choose that below instead.</p>
+              <Button variant="secondary" className="mt-3 w-full" onClick={() => onUse(barcode.suggestion!)}>Carry on anyway</Button>
+            </>
+          ) : barcode.suggestion ? (
             <>
               <div className="mt-2 text-sm"><MatchLine food={barcode.suggestion} /></div>
               <Button className="mt-3 w-full" onClick={() => onUse(barcode.suggestion!)}>Yes, that's it</Button>

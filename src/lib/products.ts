@@ -53,6 +53,14 @@ export function matchProduct(p: Product): FoodChoice | null {
     const c = getCategory(categoryId)
     return c !== null && (c.group === 'frozen') === frozen
   }
+  // Some categories need the product name to agree (fresh milk is often tagged UHT).
+  const nameSays = (categoryId: string) => {
+    const words = data.offCategories.nameMustSay[categoryId]
+    if (!Array.isArray(words)) return true
+    const n = `${p.name} ${p.brand}`.toLowerCase()
+    return words.some((w) => n.includes(w))
+  }
+  const milkGap = (): FoodChoice => ({ kind: 'not-covered', term: label, category: null, usualDateType: null, checked: data.offCategories.checked })
 
   const map = data.offCategories.map
   for (const tag of [...p.categories].reverse()) {
@@ -62,12 +70,14 @@ export function matchProduct(p: Product): FoodChoice | null {
       return { kind: 'not-covered', term: label, category: null, usualDateType: null, checked: data.offCategories.checked }
     }
     if (!fits(target)) continue
+    if (!nameSays(target)) return milkGap()
     const c = getCategory(target)!
     return { kind: 'synonym', term: label, category: c, usualDateType: c.usualDateType, checked: data.offCategories.checked }
   }
 
   const text = [p.name, ...p.categories.map((t) => t.replace(/^\w\w:/, '').replace(/-/g, ' '))].join(' \n ')
   const syn = matchSynonymInText(text, (s) => fits(s.categoryId))
+  if (syn && !nameSays(syn.category!.id)) return milkGap()
   if (syn) return { ...syn, term: label }
   return null
 }

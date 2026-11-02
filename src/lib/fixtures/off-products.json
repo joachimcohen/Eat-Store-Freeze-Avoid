@@ -1,0 +1,178 @@
+{
+  "note": "Real product records from Open Food Facts (world.openfoodfacts.org), retrieved 2 November 2026. Open Database Licence. Used only to test matching; not shipped in the app.",
+  "products": [
+    {
+      "code": "9300633386689",
+      "name": "Australian Full Cream Milk",
+      "brand": "Woolworths",
+      "categories": [
+        "en:dairies",
+        "en:milks-liquid-and-powder",
+        "en:milks",
+        "en:homogenized-milks",
+        "en:pasteurised-products",
+        "en:uht-milks",
+        "en:whole-milks",
+        "en:whole-milk-uht"
+      ]
+    },
+    {
+      "code": "9300639618661",
+      "name": "Full Cream Milk",
+      "brand": "Liddells",
+      "categories": [
+        "en:beverages-and-beverages-preparations",
+        "en:beverages",
+        "en:dairies",
+        "en:dairy-drinks",
+        "en:milks-liquid-and-powder",
+        "en:milks",
+        "en:homogenized-milks",
+        "en:pasteurised-products",
+        "en:uht-milks",
+        "en:whole-milks"
+      ]
+    },
+    {
+      "code": "9300601021246",
+      "name": "Cheddar Cheese",
+      "brand": "coles simply",
+      "categories": [
+        "en:dairies",
+        "en:fermented-foods",
+        "en:fermented-milk-products",
+        "en:cheeses",
+        "en:cow-cheeses",
+        "en:cheeses-from-the-united-kingdom",
+        "en:cheeses-from-england",
+        "en:cheddar-cheese"
+      ]
+    },
+    {
+      "code": "9310264912768",
+      "name": "Farmers’ Tasty NATURAL CHEESE SLICES",
+      "brand": "Bega",
+      "categories": [
+        "en:dairies",
+        "en:fermented-foods",
+        "en:fermented-milk-products",
+        "en:cheeses",
+        "en:cow-cheeses",
+        "en:cheeses-from-the-united-kingdom",
+        "en:cheeses-from-england",
+        "en:sliced-cheeses",
+        "en:cheddar-cheese"
+      ]
+    },
+    {
+      "code": "9353712000297",
+      "name": "BEEFY BRAT",
+      "brand": "UNREAL CO",
+      "categories": [
+        "en:meats-and-their-products",
+        "en:prepared-meats",
+        "en:meat-alternatives",
+        "en:sausages",
+        "en:meat-analogues",
+        "en:vegetarian-sausages"
+      ]
+    },
+    {
+      "code": "9310645326696",
+      "name": "Beef Sausages Garlic & Herb",
+      "brand": "Coles",
+      "categories": [
+        "en:meats-and-their-products",
+        "en:prepared-meats",
+        "en:sausages"
+      ]
+    },
+    {
+      "code": "9310625012786",
+      "name": "Happy Country Hens",
+      "brand": "Sunny Queen Farms",
+      "categories": [
+        "en:eggs-and-their-products",
+        "en:farming-products",
+        "en:eggs",
+        "en:chicken-eggs",
+        "en:free-range-chicken-eggs"
+      ]
+    },
+    {
+      "code": "9300633637057",
+      "name": "Australian Extra Large 12 free range eggs",
+      "brand": "Free range eggs",
+      "categories": [
+        "en:eggs-and-their-products",
+        "en:farming-products",
+        "en:eggs",
+        "en:chicken-eggs",
+        "en:free-range-chicken-eggs",
+        "en:Free range large eggs",
+        "en:Large eggs"
+      ]
+    },
+    {
+      "code": "4061459943832",
+      "name": "Peach Slices In Juice",
+      "brand": "Sweet Valley",
+      "categories": [
+        "en:plant-based-foods-and-beverages",
+        "en:plant-based-foods",
+        "en:desserts",
+        "en:fruit-based-foods-and-beverages",
+        "en:fruits-and-vegetables-based-foods",
+        "en:canned-foods",
+        "en:fruit-based-foods",
+        "en:baby-foods",
+        "en:canned-plant-based-foods",
+        "en:snacks-and-desserts-for-babies",
+        "en:canned-fruits",
+        "en:fruits-desserts",
+        "en:baby-fruit-desserts",
+        "en:Peaches in juice"
+      ]
+    },
+    {
+      "code": "4710144809587",
+      "name": "Baby Mum-Mum vegetable",
+      "brand": "Baby Mum Mum",
+      "categories": [
+        "en:baby-foods"
+      ]
+    },
+    {
+      "code": "9310052122515",
+      "name": "Spreadable Original Soft",
+      "brand": "Western Star",
+      "categories": [
+        "en:dairies",
+        "en:fats",
+        "en:spreads",
+        "en:salted-spreads",
+        "en:spreadable-fats",
+        "en:animal-fats",
+        "en:dairy-spreads",
+        "en:milkfat",
+        "en:butters"
+      ]
+    },
+    {
+      "code": "9415007002062",
+      "name": "BUTTERSOFT Salted Spreadable Butter",
+      "brand": "MAINLAND",
+      "categories": [
+        "en:dairies",
+        "en:fats",
+        "en:spreads",
+        "en:spreadable-fats",
+        "en:animal-fats",
+        "en:dairy-spreads",
+        "en:milkfat",
+        "en:butters",
+        "en:salted-butters"
+      ]
+    }
+  ]
+}
