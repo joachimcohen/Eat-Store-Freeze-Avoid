@@ -1,19 +1,22 @@
 import { FoodPicker } from '../components/FoodPicker'
 import { PhotoButton } from '../components/PhotoButton'
 import { CAP_COLOURS } from '../components/verdictStyle'
-import { Panel } from '../components/ui'
+import { Button, Panel } from '../components/ui'
 import type { FoodChoice } from '../lib/search'
 
-export function Find({ onPick, onPhoto, onQuiz }: { onPick: (f: FoodChoice) => void; onPhoto: (f: File) => void; onQuiz: () => void }) {
+export function Find({ onPick, onPhoto, onScan, onQuiz }: { onPick: (f: FoodChoice) => void; onPhoto: (f: File) => void; onScan: () => void; onQuiz: () => void }) {
   return (
     <>
       <h1 className="display mt-6 text-3xl font-semibold" tabIndex={-1}>Is it still good?</h1>
       <p className="mt-1 text-ink-soft">Scan or type a food to find out whether to eat, store, freeze or avoid it.</p>
 
-      <PhotoButton onPhoto={onPhoto} className="mt-5 w-full text-lg">
-        <span aria-hidden="true">📷 </span>Scan the date label
+      <Button onClick={onScan} className="mt-5 w-full text-lg">
+        <span aria-hidden="true" className="mr-1 inline-block scale-x-125 font-black tracking-[-0.2em]">|||</span> Scan the barcode
+      </Button>
+      <PhotoButton variant="secondary" onPhoto={onPhoto} className="mt-3 w-full">
+        <span aria-hidden="true">📷 </span>Or photograph the date label
       </PhotoButton>
-      <p className="mt-2 text-center text-sm text-ink-soft">Your photo is read on this phone and never uploaded.</p>
+      <p className="mt-2 text-center text-sm text-ink-soft">Photos are read on this phone and never uploaded.</p>
 
       <Panel label="Find a food">
         <FoodPicker onPick={onPick} />

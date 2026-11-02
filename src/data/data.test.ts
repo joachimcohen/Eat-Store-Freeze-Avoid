@@ -137,3 +137,11 @@ describe('recipe links', () => {
     for (const c of data.categories) for (const r of c.recipeLinks) expect(r.url, r.title).toMatch(/^https:\/\//)
   })
 })
+
+describe('Open Food Facts category map', () => {
+  it('every mapping points to a real category or the known gaps', () => {
+    for (const [tag, id] of Object.entries(data.offCategories.map)) {
+      expect(id === 'not-covered' || getCategory(id) !== null, tag).toBe(true)
+    }
+  })
+})

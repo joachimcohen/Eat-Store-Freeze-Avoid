@@ -6,6 +6,7 @@ import { emptyDraft, type Draft } from './draft'
 import { combineReadings } from './lib/label'
 import { readLabelTexts } from './lib/ocr'
 import { foodFromLabelText, type FoodChoice } from './lib/search'
+import { lookupProduct, matchProduct, rememberedFood, rememberFood } from './lib/products'
 import { localToday } from './rules/dates'
 import { decideVerdict } from './rules/verdict'
 import { Confirm } from './screens/Confirm'
@@ -13,8 +14,9 @@ import { Find } from './screens/Find'
 import { Quiz } from './screens/Quiz'
 import { Result } from './screens/Result'
 import { RulesCheck } from './screens/RulesCheck'
+import { Scan } from './screens/Scan'
 
-type Screen = 'find' | 'confirm' | 'result' | 'rules' | 'quiz'
+type Screen = 'find' | 'scan' | 'confirm' | 'result' | 'rules' | 'quiz'
 
 export default function App() {
   const [screen, setScreenState] = useState<Screen>(() => (location.hash === '#rules' ? 'rules' : location.hash === '#quiz' ? 'quiz' : 'find'))
@@ -39,7 +41,30 @@ export default function App() {
     scrollTo(0, 0)
   }, [screen])
 
-  const update = (d: Partial<Draft>) => setDraft((old) => ({ ...old, ...d }))
+  const update = (d: Partial<Draft>) =>
+    setDraft((old) => {
+      // A food type chosen after scanning a barcode is remembered on this phone.
+      if (d.food && old.barcode && old.barcode.status !== 'looking') rememberFood(old.barcode.code, d.food)
+      return { ...old, ...d }
+    })
+
+  const scanned = useCallback(async (code: string) => {
+    photoRun.current++
+    const remembered = rememberedFood(code)
+    if (remembered) {
+      setDraft({ ...emptyDraft, food: remembered, dateType: remembered.usualDateType, barcode: { status: 'remembered', code, food: remembered } })
+      go('confirm')
+      return
+    }
+    setDraft({ ...emptyDraft, barcode: { status: 'looking', code } })
+    go('confirm')
+    const r = await lookupProduct(code)
+    setDraft((d) => {
+      if (d.barcode?.code !== code) return d
+      if (r.status !== 'found') return { ...d, barcode: { status: r.status, code } }
+      return { ...d, barcode: { status: 'found', code, name: r.product.name, brand: r.product.brand, suggestion: matchProduct(r.product) } }
+    })
+  }, [go])
 
   const startAgain = () => {
     photoRun.current++
@@ -104,12 +129,13 @@ export default function App() {
       }
     >
       <div ref={main}>
-        {screen === 'find' && <Find onPick={pickFood} onPhoto={readPhoto} onQuiz={() => go('quiz')} />}
+        {screen === 'find' && <Find onPick={pickFood} onPhoto={readPhoto} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
+        {screen === 'scan' && <Scan onCode={scanned} onSkip={() => go('find')} />}
         {screen === 'confirm' && <Confirm draft={draft} update={update} onPhoto={readPhoto} onSubmit={() => go('result')} />}
         {screen === 'result' && result && draft.food && (
-          <Result result={result} food={draft.food} onChange={() => go('confirm')} onAgain={startAgain} />
+          <Result result={result} food={draft.food} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onAgain={startAgain} />
         )}
-        {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} onQuiz={() => go('quiz')} />}
+        {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
         {screen === 'rules' && <RulesCheck />}
         {screen === 'quiz' && <Quiz onDone={startAgain} />}
       </div>

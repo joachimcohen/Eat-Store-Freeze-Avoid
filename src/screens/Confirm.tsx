@@ -2,7 +2,7 @@ import { FoodPicker } from '../components/FoodPicker'
 import { PhotoButton } from '../components/PhotoButton'
 import { Button, Choice } from '../components/ui'
 import { data } from '../data'
-import { missing, type Draft } from '../draft'
+import { missing, type BarcodeState, type Draft } from '../draft'
 import { formatDate } from '../rules/dates'
 import type { DateTypeChoice } from '../rules/types'
 import type { FoodChoice } from '../lib/search'
@@ -51,11 +51,14 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
           <>
             <p className="text-sm text-ink-soft">Food</p>
             <MatchLine food={draft.food} />
+            {draft.barcode?.status === 'remembered' && <p className="mt-1 text-sm text-ink-soft">You chose this for barcode {draft.barcode.code} before.</p>}
+            {draft.barcode && draft.barcode.status !== 'remembered' && <p className="mt-1 text-sm text-ink-soft">Barcode {draft.barcode.code}</p>}
             <Button variant="link" className="mt-1 -ml-1" onClick={() => update({ food: null })}>Not right? Choose another</Button>
           </>
         ) : (
           <>
-            {label.status === 'done' && label.suggestedFood && (
+            {draft.barcode && <BarcodeStatus barcode={draft.barcode} onUse={pickFood} />}
+            {!draft.barcode && label.status === 'done' && label.suggestedFood && (
               <div className="mb-4 rounded-2xl bg-white p-3 shadow-sm">
                 <p className="text-sm">Found on the label:</p>
                 <MatchLine food={label.suggestedFood} />
@@ -69,8 +72,8 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
 
       <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Date">
         <LabelStatus draft={draft} />
-        <PhotoButton variant="secondary" onPhoto={onPhoto} className="mt-3 w-full">
-          {label.status === 'idle' ? 'Read the date from a photo' : 'Try another photo'}
+        <PhotoButton variant={draft.barcode && label.status === 'idle' ? 'primary' : 'secondary'} onPhoto={onPhoto} className="mt-3 w-full">
+          {label.status !== 'idle' ? 'Try another photo' : draft.barcode ? '📷 Now photograph the date label' : 'Read the date from a photo'}
         </PhotoButton>
 
         <Choice<DateTypeChoice>
@@ -159,4 +162,37 @@ function LabelStatus({ draft }: { draft: Draft }) {
       {!r.dateType && <p className="mt-1 text-sm">We couldn't tell if it's best before or use by. Please choose.</p>}
     </div>
   )
+}
+
+function BarcodeStatus({ barcode, onUse }: { barcode: BarcodeState; onUse: (f: FoodChoice) => void }) {
+  const box = 'mb-4 rounded-2xl bg-white p-3 shadow-sm'
+  switch (barcode.status) {
+    case 'looking':
+      return <p role="status" className={box}>Looking up barcode {barcode.code}… Only the number is sent.</p>
+    case 'offline':
+      return <p role="status" className={box}>Looking up a barcode needs a connection. Please choose the food type below.</p>
+    case 'not-found':
+      return <p role="status" className={box}>We couldn't find barcode {barcode.code}. Please choose the food type below.</p>
+    case 'remembered':
+      return null
+    case 'found': {
+      const product = [barcode.brand, barcode.name].filter(Boolean).join(' ') || `Barcode ${barcode.code}`
+      return (
+        <div role="status" className={box}>
+          <p className="text-sm text-ink-soft">Barcode {barcode.code}</p>
+          <p className="font-semibold">{product}</p>
+          {barcode.suggestion ? (
+            <>
+              <div className="mt-2 text-sm"><MatchLine food={barcode.suggestion} /></div>
+              <Button className="mt-3 w-full" onClick={() => onUse(barcode.suggestion!)}>Yes, that's it</Button>
+              <p className="mt-2 text-sm text-ink-soft">Not right? Choose the food type below.</p>
+            </>
+          ) : (
+            <p className="mt-1 text-sm">This product isn't matched to our list yet. Please choose the food type below.</p>
+          )}
+          <p className="mt-2 text-xs text-ink-soft">Product data from Open Food Facts.</p>
+        </div>
+      )
+    }
+  }
 }

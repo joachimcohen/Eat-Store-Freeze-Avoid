@@ -6,8 +6,9 @@ import type { VerdictResult } from '../rules/types'
 import type { FoodChoice } from '../lib/search'
 import { MatchLine } from './Confirm'
 
-export function Result({ result, food, onChange, onAgain }: {
+export function Result({ result, food, fromBarcode = false, onChange, onAgain }: {
   result: VerdictResult
+  fromBarcode?: boolean
   food: FoodChoice
   onChange: () => void
   onAgain: () => void
@@ -45,6 +46,7 @@ export function Result({ result, food, onChange, onAgain }: {
 
       <div className="mt-4 text-xs leading-relaxed text-ink-soft">
         {lines.sources.map((s) => <p key={s}>{s}</p>)}
+        {fromBarcode && <p>Product data from Open Food Facts (Open Database Licence).</p>}
         <p className="mt-2">{data.wording.disclaimer}</p>
       </div>
 

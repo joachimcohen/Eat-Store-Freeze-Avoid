@@ -69,3 +69,9 @@ body {
 
 /* Headings get focus when a screen opens (for screen readers); no box needed. */
 h1[tabindex="-1"]:focus { outline: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scan-line { animation: scan 1.6s ease-in-out infinite alternate; }
+  @keyframes scan { from { top: 12% } to { top: 85% } }
+}
+.scan-line { top: 50%; }

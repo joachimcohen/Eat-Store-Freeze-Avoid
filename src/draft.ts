@@ -8,6 +8,13 @@ export type LabelState =
   | { status: 'done'; reading: LabelReading; suggestedFood: FoodChoice | null }
   | { status: 'failed' }
 
+export type BarcodeState =
+  | { status: 'looking'; code: string }
+  | { status: 'found'; code: string; name: string; brand: string; suggestion: FoodChoice | null }
+  | { status: 'remembered'; code: string; food: FoodChoice }
+  | { status: 'not-found'; code: string }
+  | { status: 'offline'; code: string }
+
 /** Everything the person has entered so far. Lives in memory only. */
 export type Draft = {
   food: FoodChoice | null
@@ -18,10 +25,11 @@ export type Draft = {
   stored: 'yes' | 'no' | null
   damaged: 'no' | 'yes' | null
   label: LabelState
+  barcode: BarcodeState | null
 }
 
 export const emptyDraft: Draft = {
-  food: null, dateType: null, date: '', opened: null, stored: null, damaged: null, label: { status: 'idle' },
+  food: null, dateType: null, date: '', opened: null, stored: null, damaged: null, label: { status: 'idle' }, barcode: null,
 }
 
 /** What still needs answering before a verdict can be shown. */

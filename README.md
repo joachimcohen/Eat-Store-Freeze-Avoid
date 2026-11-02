@@ -49,3 +49,7 @@ Open the site link on the phone, then:
 - **Android (Chrome):** tap the ⋮ menu, then **Add to Home screen** (or **Install app**).
 
 After the first visit it works offline. While prototyping it always loads the newest version when there is a connection.
+
+## Barcodes
+
+Scanning reads the barcode on the phone (zxing-wasm, served from this app). Only the barcode number is sent, to Open Food Facts, to get the product name and categories. The app then suggests one of our categories, using `offCategories` in the data file first and the synonyms second; frozen products only match frozen categories. The person always confirms, and their choice is remembered for that barcode on that phone only.

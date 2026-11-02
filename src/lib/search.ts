@@ -76,13 +76,27 @@ export function unknownFood(term: string): FoodChoice {
   return { kind: 'unknown', term: term.trim(), category: null, usualDateType: null, checked: true }
 }
 
-/** Finds a known everyday word in label text, longest first. Only a suggestion. */
-export function foodFromLabelText(text: string): FoodChoice | null {
-  const t = ` ${clean(text)} `
+/** Lower case, "yogurt" spelt the Australian way, and plurals dropped, so "Yogurts" matches "yoghurt". */
+function matchable(s: string): string {
+  return clean(s.replace(/\(.*?\)/g, ''))
+    .replace(/\byogurt/g, 'yoghurt')
+    .split(' ')
+    .map((w) => (w.length > 3 && /[^s]s$/.test(w) ? w.slice(0, -1) : w))
+    .join(' ')
+}
+
+/** Finds a known everyday word (synonym) in some text, longest first. Only a suggestion. */
+export function matchSynonymInText(text: string, allow: (s: { categoryId: string }) => boolean = () => true): FoodChoice | null {
+  const t = ` ${matchable(text)} `
   const candidates = entries
-    .filter((e) => e.kind === 'synonym')
-    .map((e) => ({ e, words: clean(e.term.replace(/\(.*?\)/g, '')) }))
+    .filter((e) => e.kind === 'synonym' && e.category && allow({ categoryId: e.category.id }))
+    .map((e) => ({ e, words: matchable(e.term) }))
     .filter(({ words }) => words.length >= 3 && t.includes(` ${words} `))
     .sort((a, b) => b.words.length - a.words.length)
   return candidates[0]?.e ?? null
+}
+
+/** Finds a known everyday word in label text. Only a suggestion. */
+export function foodFromLabelText(text: string): FoodChoice | null {
+  return matchSynonymInText(text)
 }
