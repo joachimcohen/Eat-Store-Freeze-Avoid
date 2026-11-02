@@ -5,6 +5,7 @@ import '@fontsource/doto/900.css'
 import '@fontsource-variable/dm-sans'
 import './index.css'
 import App from './App'
+import { data } from './data'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -37,7 +38,7 @@ async function saveForOffline() {
   const idle = (fn: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 5000 }) : setTimeout(fn, 3000))
   idle(() => {
     // Starting the readers downloads (and so caches) the right files for this phone.
-    import('./lib/ocr').then((m) => m.warmUp()).catch(() => {})
+    if (data.settings.dateScanner) import('./lib/ocr').then((m) => m.warmUp()).catch(() => {})
     import('./lib/barcode').then((m) => m.warmUp()).catch(() => {})
   })
 }

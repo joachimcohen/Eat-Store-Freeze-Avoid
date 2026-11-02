@@ -5,7 +5,9 @@
     "about": "All advice in the app comes from this file. Set \"checked\": true on each item once it has been checked against its source."
   },
   "settings": {
-    "freezeWindowDays": 1
+    "freezeWindowDays": 1,
+    "dateScanner": false,
+    "_dateScannerNote": "Reading dates with the camera is switched off: it wasn't reliable enough on real packs. Set to true to bring the Scan the date buttons back."
   },
   "sources": [
     {

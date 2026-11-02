@@ -5,7 +5,7 @@ import { emptyDraft, type Draft } from './draft'
 import { combineReadings, type LabelReading } from './lib/label'
 import { readLabelTexts } from './lib/ocr'
 import { foodFromLabelText, type FoodChoice } from './lib/search'
-import { lookupProduct, matchProduct, rememberedFood, rememberFood } from './lib/products'
+import { lookupProduct, suggestFoods, rememberedFood, rememberFood } from './lib/products'
 import { formatDate, localToday } from './rules/dates'
 import { decideVerdict } from './rules/verdict'
 import { Confirm } from './screens/Confirm'
@@ -76,7 +76,7 @@ export default function App() {
     setDraft((d) => {
       if (d.barcode?.code !== code) return d
       if (r.status !== 'found') return { ...d, barcode: { status: r.status, code } }
-      return { ...d, barcode: { status: 'found', code, name: r.product.name, brand: r.product.brand, suggestion: matchProduct(r.product) } }
+      return { ...d, barcode: { status: 'found', code, name: r.product.name, brand: r.product.brand, suggestions: suggestFoods(r.product) } }
     })
   }, [go])
 

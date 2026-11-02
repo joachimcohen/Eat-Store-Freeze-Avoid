@@ -10,7 +10,7 @@ export type LabelState =
 
 export type BarcodeState =
   | { status: 'looking'; code: string }
-  | { status: 'found'; code: string; name: string; brand: string; suggestion: FoodChoice | null }
+  | { status: 'found'; code: string; name: string; brand: string; suggestions: FoodChoice[] }
   | { status: 'remembered'; code: string; food: FoodChoice }
   | { status: 'not-found'; code: string }
   | { status: 'offline'; code: string }

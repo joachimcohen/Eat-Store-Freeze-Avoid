@@ -37,7 +37,7 @@ export function Find({ onPick, onDateScan, onScan, onQuiz }: { onPick: (f: FoodC
         <svg aria-hidden="true" width="26" height="20" viewBox="0 0 26 20" fill="currentColor"><rect x="0" width="2" height="20" /><rect x="4" width="1" height="20" /><rect x="7" width="3" height="20" /><rect x="12" width="1" height="20" /><rect x="15" width="2" height="20" /><rect x="19" width="1" height="20" /><rect x="22" width="4" height="20" /></svg>
         Scan the barcode
       </Button>
-      <Button variant="secondary" onClick={onDateScan} className="mt-3 w-full">Or scan the date label</Button>
+      {data.settings.dateScanner && <Button variant="secondary" onClick={onDateScan} className="mt-3 w-full">Or scan the date label</Button>}
       <p className="mt-2 text-center text-sm text-ink-soft">The camera is read on this phone and nothing is uploaded.</p>
 
       <Panel label="Find a food">

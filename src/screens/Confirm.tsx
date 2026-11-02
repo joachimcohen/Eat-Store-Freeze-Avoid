@@ -2,7 +2,7 @@ import { FoodPicker } from '../components/FoodPicker'
 import { Button, Choice } from '../components/ui'
 import { data } from '../data'
 import { missing, type BarcodeState, type Draft } from '../draft'
-import { formatDate } from '../rules/dates'
+import { DateEntry } from '../components/DateEntry'
 import type { DateTypeChoice } from '../rules/types'
 import type { FoodChoice } from '../lib/search'
 
@@ -70,10 +70,14 @@ export function Confirm({ draft, update, onDateScan, onSubmit }: {
       </section>
 
       <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Date">
-        <LabelStatus draft={draft} />
-        <Button variant={draft.barcode && label.status === 'idle' ? 'primary' : 'secondary'} onClick={onDateScan} className="mt-3 w-full">
-          {label.status !== 'idle' ? 'Scan the date again' : draft.barcode ? 'Now scan the date label' : 'Scan the date from the label'}
-        </Button>
+        {data.settings.dateScanner && (
+          <>
+            <LabelStatus draft={draft} />
+            <Button variant={draft.barcode && label.status === 'idle' ? 'primary' : 'secondary'} onClick={onDateScan} className="mt-3 mb-5 w-full">
+              {label.status !== 'idle' ? 'Scan the date again' : draft.barcode ? 'Now scan the date label' : 'Scan the date from the label'}
+            </Button>
+          </>
+        )}
 
         <Choice<DateTypeChoice>
           legend="What does the label say?"
@@ -89,19 +93,7 @@ export function Confirm({ draft, update, onDateScan, onSubmit }: {
           hint={draft.dateType === 'not-sure' ? 'We\'ll treat it as a use-by date, to be careful.' : undefined}
         />
 
-        {draft.dateType !== 'no-date' && (
-          <div className="mt-5">
-            <label htmlFor="date" className="font-semibold">Date on the pack</label>
-            <input
-              id="date"
-              type="date"
-              value={draft.date}
-              onChange={(e) => update({ date: e.target.value })}
-              className="mt-2 block min-h-12 w-full rounded-2xl border-2 border-rule bg-white px-4 text-lg outline-none focus:border-brand"
-            />
-            {draft.date && <p className="print mt-2" aria-hidden="true">{formatDate(draft.date)}</p>}
-          </div>
-        )}
+        {draft.dateType !== 'no-date' && <DateEntry value={draft.date} onChange={(date) => update({ date })} />}
       </section>
 
       <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Quick questions">
@@ -180,16 +172,27 @@ function BarcodeStatus({ barcode, onUse }: { barcode: BarcodeState; onUse: (f: F
         <div role="status" className={box}>
           <p className="text-sm text-ink-soft">Barcode {barcode.code}</p>
           <p className="font-semibold">{product}</p>
-          {barcode.suggestion?.kind === 'not-covered' ? (
+          {barcode.suggestions.length > 0 ? (
             <>
-              <p className="mt-2 text-sm">This looks like a food we don't have checked information for yet, such as fresh milk. If it's long-life (UHT) milk, choose that below instead.</p>
-              <Button variant="secondary" className="mt-3 w-full" onClick={() => onUse(barcode.suggestion!)}>Carry on anyway</Button>
-            </>
-          ) : barcode.suggestion ? (
-            <>
-              <div className="mt-2 text-sm"><MatchLine food={barcode.suggestion} /></div>
-              <Button className="mt-3 w-full" onClick={() => onUse(barcode.suggestion!)}>Yes, that's it</Button>
-              <p className="mt-2 text-sm text-ink-soft">Not right? Choose the food type below.</p>
+              <p className="mt-3 font-extrabold">Is it one of these?</p>
+              <ul className="mt-2 grid gap-2">
+                {barcode.suggestions.map((f) => (
+                  <li key={f.category?.id ?? f.kind}>
+                    <button
+                      type="button"
+                      onClick={() => onUse(f)}
+                      className="flex min-h-12 w-full items-center justify-between gap-3 rounded-2xl border-2 border-rule bg-white px-4 py-2 text-left font-semibold hover:border-ink focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-[#1f6fd1]"
+                    >
+                      <span>
+                        {f.category ? f.category.name : 'Fresh milk or another food we don\'t cover yet'}
+                        {f.kind === 'not-covered' && <span className="block text-sm font-normal text-ink-soft">If it's long-life (UHT) milk, choose that instead.</span>}
+                      </span>
+                      <span aria-hidden="true" className="text-xl">›</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-sm text-ink-soft">These matches have not been checked yet. None of these? Choose the food type below.</p>
             </>
           ) : (
             <p className="mt-1 text-sm">This product isn't matched to our list yet. Please choose the food type below.</p>

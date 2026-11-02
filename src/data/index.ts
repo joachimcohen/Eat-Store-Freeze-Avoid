@@ -46,7 +46,7 @@ export type QuizQuestion = {
 
 export type FoodData = {
   meta: { version: number; lastUpdated: string; about: string }
-  settings: { freezeWindowDays: number }
+  settings: { freezeWindowDays: number; dateScanner: boolean }
   sources: Source[]
   storageTips: Record<string, { text: string; sourceId: string }>
   groups: { id: string; name: string }[]

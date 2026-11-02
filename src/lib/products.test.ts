@@ -33,7 +33,7 @@ describe('looking up a barcode', () => {
 
   it('reads a found product', async () => {
     const r = await lookupProduct('9300000000000', fakeFetch(200, { status: 1, product: { product_name: 'Greek Yogurt', brands: 'Brand, Other', categories_tags: ['en:yogurts'] } }))
-    expect(r).toEqual({ status: 'found', product: { code: '9300000000000', name: 'Greek Yogurt', brand: 'Brand', categories: ['en:yogurts'] } })
+    expect(r).toEqual({ status: 'found', product: { code: '9300000000000', name: 'Greek Yogurt', brand: 'Brand', categories: ['en:yogurts'], generic: '' } })
   })
   it('handles an unknown barcode', async () => {
     expect(await lookupProduct('1', fakeFetch(404, { status: 0 }))).toEqual({ status: 'not-found' })
@@ -47,7 +47,7 @@ describe('looking up a barcode', () => {
     let url = ''
     const spy = (async (u: string) => { url = u; return new Response('{}', { status: 404 }) }) as unknown as typeof fetch
     await lookupProduct('9300000000000', spy)
-    expect(url).toBe('https://world.openfoodfacts.org/api/v2/product/9300000000000.json?fields=product_name,product_name_en,generic_name,brands,categories_tags')
+    expect(url).toBe('https://world.openfoodfacts.org/api/v2/product/9300000000000.json?fields=product_name,product_name_en,generic_name,generic_name_en,brands,categories_tags')
   })
 })
 
@@ -78,5 +78,57 @@ describe('matching real Australian products', () => {
   it('long-life milk is still matched when the name says so', () => {
     expect(matchProduct(product('UHT Full Cream Milk', ['en:milks', 'en:uht-milks']))?.category?.id).toBe('uht-milk')
     expect(matchProduct(product('Long Life Milk', ['en:milks']))?.category?.id).toBe('uht-milk')
+  })
+})
+
+import { suggestFoods } from './products'
+
+describe('"Is it one of these?" suggestions', () => {
+  it('real products: the right food type is among the suggestions', () => {
+    const want: Record<string, string> = {
+      '9300601021246': 'hard-cheese', '9310264912768': 'hard-cheese', '9310645326696': 'fresh-meat-fish-meals',
+      '9310625012786': 'eggs', '9310052122515': 'butter', '4710144809587': 'baby-food',
+    }
+    for (const p of real.products) {
+      if (!want[p.code]) continue
+      expect(suggestFoods(p).map((f) => f.category?.id), p.name).toContain(want[p.code])
+    }
+  })
+  it('fresh-looking milk offers both "not covered" and long-life milk to choose from', () => {
+    const p = real.products.find((x) => x.code === '9300633386689')!
+    const s = suggestFoods(p)
+    expect(s[0].kind).toBe('not-covered')
+    expect(s.map((f) => f.category?.id)).toContain('uht-milk')
+  })
+  it('a name with no category data still gets suggestions', () => {
+    expect(suggestFoods(product('Greek Style Yoghurt 1kg', [])).map((f) => f.category?.id)).toContain('yoghurt-dips')
+    expect(suggestFoods(product('Penne Rigate', ['en:pastas'])).map((f) => f.category?.id)).toContain('pasta-rice')
+  })
+  it('frozen products never get fresh or pantry suggestions', () => {
+    for (const f of suggestFoods(product('Chicken Breast Fillets', ['en:frozen-foods', 'en:chickens']))) {
+      expect(f.category?.group ?? 'frozen').toBe('frozen')
+    }
+  })
+  it('gives at most three, without repeats, and nothing for nonsense', () => {
+    const s = suggestFoods(product('Cheddar Cheese Tasty Slices', ['en:cheeses', 'en:cheddar-cheese', 'en:sliced-cheeses']))
+    expect(s.length).toBeLessThanOrEqual(3)
+    expect(new Set(s.map((f) => f.category?.id)).size).toBe(s.length)
+    expect(suggestFoods(product('Xqzv', []))).toEqual([])
+  })
+})
+
+describe('slow connections', () => {
+  it('gives up and says offline when the lookup takes too long', async () => {
+    const hang = ((_u: string, init?: RequestInit) => new Promise((_r, reject) => init?.signal?.addEventListener('abort', () => reject(new DOMException('timeout', 'TimeoutError'))))) as unknown as typeof fetch
+    const started = Date.now()
+    expect(await lookupProduct('9300000000000', hang)).toEqual({ status: 'offline' })
+    expect(Date.now() - started).toBeLessThan(9500)
+  }, 12000)
+})
+
+describe('suggestions stay sensible', () => {
+  it('"chicken eggs" never suggests chicken (meat)', () => {
+    const p = real.products.find((x) => x.code === '9310625012786')!
+    expect(suggestFoods(p).map((f) => f.category?.id)).not.toContain('fresh-meat-fish-meals')
   })
 })

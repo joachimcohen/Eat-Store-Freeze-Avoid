@@ -37,7 +37,14 @@ This is a static site, so Vercel hosts it for free. `vercel.json`, `public/robot
 
 Open Food Facts product data is used under the Open Database Licence.
 
-## Reading date labels
+## Entering dates
+
+Dates are typed into Day / Month / Year boxes, in the order Australian packs print them, and shown back in words ("That's Thursday 5 November 2026"). The phone's own date box isn't used: it follows the phone's language and can be month-first. "Today" is the phone's own date in its own time zone (tested for Melbourne, Brisbane and Perth, including daylight saving).
+
+## Reading date labels (switched off)
+
+Set `settings.dateScanner` to `true` in the data file to bring it back.
+
 
 The main way is the live date viewfinder: the person fits the date inside a thin box, and the app reads just that strip from the camera at full detail (contrast stretched, a local cut-off that copes with glare, and dot-matrix dots joined), frame after frame, until two readings agree. Torch and zoom buttons appear where the phone supports them. A photo is the fallback:
 
@@ -55,7 +62,7 @@ After the first visit it works offline. While prototyping it always loads the ne
 
 ## Barcodes
 
-Scanning reads the barcode on the phone (zxing-wasm, served from this app). Only the barcode number is sent, to Open Food Facts, to get the product name and categories. The app then suggests one of our categories, using `offCategories` in the data file first and the synonyms second; frozen products only match frozen categories. The person always confirms, and their choice is remembered for that barcode on that phone only.
+Scanning reads the barcode on the phone (zxing-wasm, served from this app). Only the barcode number is sent, to Open Food Facts, to get the product name and categories. The app then offers up to three likely food types to tap ("Is it one of these?"), using `offCategories` in the data file first and the synonyms second; frozen products only match frozen categories. The person always confirms, and their choice is remembered for that barcode on that phone only.
 
 ## Before each update goes live
 

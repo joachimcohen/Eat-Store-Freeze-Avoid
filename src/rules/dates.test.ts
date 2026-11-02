@@ -26,3 +26,21 @@ describe('calendar dates', () => {
     expect(formatDate('2026-05-15')).toBe('15 May 2026')
   })
 })
+
+import { dateFromParts, formatDateLong } from './dates'
+
+describe('typing a date in Australian order', () => {
+  it('reads day, month, year', () => {
+    expect(dateFromParts('5', '11', '26')).toBe('2026-11-05')
+    expect(dateFromParts('05', '11', '2026')).toBe('2026-11-05')
+  })
+  it('rejects impossible or incomplete dates', () => {
+    expect(dateFromParts('31', '2', '27')).toBeNull()
+    expect(dateFromParts('5', '13', '26')).toBeNull()
+    expect(dateFromParts('5', '11', '')).toBeNull()
+    expect(dateFromParts('5', '11', '202')).toBeNull()
+  })
+  it('writes the date out with its weekday', () => {
+    expect(formatDateLong('2027-02-03')).toBe('Wednesday 3 February 2027')
+  })
+})

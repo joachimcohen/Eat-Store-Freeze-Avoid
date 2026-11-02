@@ -96,6 +96,17 @@ export function matchSynonymInText(text: string, allow: (s: { categoryId: string
   return candidates[0]?.e ?? null
 }
 
+/** Every known everyday word (synonym) found in some text, longest first. */
+export function allSynonymsInText(text: string, allow: (s: { categoryId: string }) => boolean = () => true): FoodChoice[] {
+  const t = ` ${matchable(text)} `
+  return entries
+    .filter((e) => e.kind === 'synonym' && e.category && allow({ categoryId: e.category.id }))
+    .map((e) => ({ e, words: matchable(e.term) }))
+    .filter(({ words }) => words.length >= 3 && t.includes(` ${words} `))
+    .sort((a, b) => b.words.length - a.words.length)
+    .map(({ e }) => e)
+}
+
 /** Finds a known everyday word in label text. Only a suggestion. */
 export function foodFromLabelText(text: string): FoodChoice | null {
   return matchSynonymInText(text)

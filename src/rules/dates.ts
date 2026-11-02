@@ -79,3 +79,25 @@ export function formatDate(date: string): string {
   const [y, m, d] = parts(date)
   return `${d} ${MONTHS[m - 1]} ${y}`
 }
+
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+/** Australian style with the weekday: Tuesday 3 February 2027 */
+export function formatDateLong(date: string): string {
+  const [y, m, d] = parts(date)
+  return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]} ${formatDate(date)}`
+}
+
+/**
+ * Builds a date from day, month and year as typed (Australian order).
+ * A two-digit year means 20xx. Returns null if incomplete or impossible.
+ */
+export function dateFromParts(day: string, month: string, year: string): string | null {
+  if (!/^\d{1,2}$/.test(day) || !/^\d{1,2}$/.test(month) || !/^(\d{2}|\d{4})$/.test(year)) return null
+  const y = year.length === 2 ? 2000 + Number(year) : Number(year)
+  const m = Number(month), d = Number(day)
+  if (m < 1 || m > 12 || d < 1 || d > 31 || y < 2000 || y > 2099) return null
+  const iso = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+  const check = new Date(Date.UTC(y, m - 1, d))
+  return check.getUTCMonth() === m - 1 ? iso : null
+}
