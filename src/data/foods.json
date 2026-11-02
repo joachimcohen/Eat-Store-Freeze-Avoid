@@ -115,7 +115,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": [],
+      "recipeLinks": [
+        {
+          "title": "Lebanese Stuffed Pitas",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=16",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Chicken Greens Stir Fry",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=26",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "White Bean Chicken Soup",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=14",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ],
       "note": "Up to the use-by date only. May be hard frozen before the date."
     },
     {
@@ -133,7 +152,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Eat Your Greens Salad",
+          "url": "https://www.foodbank.org.au/recipes-eat-your-greens-salad/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Green Vegetable Soup",
+          "url": "https://www.foodbank.org.au/green-vegetable-soup/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Mixed Vegetable Stir Fry",
+          "url": "https://www.foodbank.org.au/vegetable-stir-fry/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "fresh-bread",
@@ -153,7 +191,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Better Beans on Toast",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=24",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Fruity French Toast",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=40",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Lebanese Stuffed Pitas",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=16",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "eggs",
@@ -173,7 +230,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Microwave Vegetable Frittata",
+          "url": "https://www.foodbank.org.au/microwave-vegetable-frittata/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Mushroom Frittata",
+          "url": "https://www.foodbank.org.au/recipes-mushroom-frittata/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Singapore Noodle-Style Pasta",
+          "url": "https://www.foodbank.org.au/singapore-noodle-style-pasta/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "butter",
@@ -213,7 +289,20 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Fruitburst Muffins",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=42",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Classic Crepe",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=48",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "thickened-cream",
@@ -253,7 +342,14 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Extreme Veggie Nachos",
+          "url": "https://www.foodbank.org.au/recipes-extreme-veggie-nachos/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "yoghurt-dips",
@@ -273,7 +369,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Tzatziki Dip",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=32",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Massaman Curry with Yoghurt",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=22",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Tutti Fruity Yoghurt Popsicles",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=46",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "dairy-desserts",
@@ -313,7 +428,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Leek & Veg Pasta Bake",
+          "url": "https://www.foodbank.org.au/recipes-leek-veg-pasta-bake/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Lentil Casserole",
+          "url": "https://www.foodbank.org.au/recipes-lentil-casserole/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Sweet Potato Quesadillas",
+          "url": "https://www.foodbank.org.au/sweet-potato-quesadillas/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "soft-cheese",
@@ -353,7 +487,20 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Mushroom Frittata",
+          "url": "https://www.foodbank.org.au/recipes-mushroom-frittata/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Eat Your Greens Salad",
+          "url": "https://www.foodbank.org.au/recipes-eat-your-greens-salad/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "hard-cheese",
@@ -373,7 +520,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Cabbage Pancakes",
+          "url": "https://www.foodbank.org.au/recipes-cabbage-pancakes/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Extreme Veggie Nachos",
+          "url": "https://www.foodbank.org.au/recipes-extreme-veggie-nachos/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        },
+        {
+          "title": "Sweet Potato Quesadillas",
+          "url": "https://www.foodbank.org.au/sweet-potato-quesadillas/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "frozen-protein-uncooked",
@@ -433,7 +599,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Pea Hummus",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=34",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "2-Minute Corn Noodle Soup",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=30",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Fruitburst Muffins",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=42",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "baby-food",
@@ -471,7 +656,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Rice Pudding",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=50",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Classic Crepe",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=48",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Scalloped Potato and Cauliflower Gratin",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=18",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "uht-non-dairy",
@@ -491,7 +695,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Creamy Banana Overnight Oats",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=44",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Rice Pudding",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=50",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Carrot Cake Muffins",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=38",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "pasta-rice",
@@ -511,7 +734,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Seasonal Veggie Pasta",
+          "url": "https://www.foodbank.org.au/seasonal-veggie-pasta/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Hearty Egyptian Kushari",
+          "url": "https://www.foodbank.org.au/kushari/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Garden Tomato Pasta",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=8",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "dry-ingredients",
@@ -531,7 +773,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Flatbread",
+          "url": "https://www.foodbank.org.au/flatbread-recipe/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Zucchini & Sweet Potato Fritters",
+          "url": "https://www.foodbank.org.au/zucchini-sweet-potato-fritters/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Cabbage Pancakes",
+          "url": "https://www.foodbank.org.au/recipes-cabbage-pancakes/",
+          "sourceId": "foodbank-cheap-recipes",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "oils-preserved",
@@ -551,7 +812,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Jacket Potatoes & Chilli Beans",
+          "url": "https://www.foodbank.org.au/jacket-potato-chilli-beans/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Chickpea Curry",
+          "url": "https://www.foodbank.org.au/chickpea-curry/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "Braised Bean Nacho Bowl",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=6",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     },
     {
       "id": "coffee-tea",
@@ -611,7 +891,26 @@
       ],
       "lastReviewed": "2026-11-01",
       "checked": false,
-      "recipeLinks": []
+      "recipeLinks": [
+        {
+          "title": "Mixed Vegetable Stir Fry",
+          "url": "https://www.foodbank.org.au/vegetable-stir-fry/",
+          "sourceId": "foodbank-vic-recipes",
+          "checked": false
+        },
+        {
+          "title": "2-Minute Corn Noodle Soup",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=30",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        },
+        {
+          "title": "Creamy Banana Overnight Oats",
+          "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf#page=44",
+          "sourceId": "foodbank-sa-nt-recipe-book",
+          "checked": false
+        }
+      ]
     }
   ],
   "synonyms": [
@@ -1762,7 +2061,7 @@
     },
     {
       "id": "foodbank-sa-nt-recipe-book",
-      "name": "Foodbank SA and NT, Recipe Book (PDF)",
+      "name": "Foodbank SA and NT, Recipe Booklet (PDF)",
       "url": "https://www.foodbank.org.au/wp-content/uploads/FBSANT_Recipe-Book.pdf",
       "checked": false
     }

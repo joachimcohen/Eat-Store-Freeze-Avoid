@@ -73,11 +73,12 @@ export function getSource(id: string): Source | null {
 }
 
 /** Recipe links to show: dead links (marked by the link checker) are hidden. */
-export function visibleRecipes(categoryId: string | null): { name: string; url: string; own: boolean }[] {
+export function visibleRecipes(categoryId: string | null): { name: string; url: string; own: boolean; source: string | null }[] {
+  const sourceName = (id: string) => data.recipeSources.find((s) => s.id === id)?.name ?? null
   const own = (categoryId ? getCategory(categoryId)?.recipeLinks ?? [] : [])
     .filter((r) => !r.broken)
     .slice(0, 3)
-    .map((r) => ({ name: r.title, url: r.url, own: true }))
+    .map((r) => ({ name: r.title, url: r.url, own: true, source: sourceName(r.sourceId) }))
   if (own.length > 0) return own
-  return data.recipeSources.filter((r) => !r.broken).map((r) => ({ name: r.name, url: r.url, own: false }))
+  return data.recipeSources.filter((r) => !r.broken).map((r) => ({ name: r.name, url: r.url, own: false, source: null }))
 }

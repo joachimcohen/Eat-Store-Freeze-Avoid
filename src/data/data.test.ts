@@ -167,3 +167,16 @@ describe('dead recipe links are hidden', () => {
     }
   })
 })
+
+describe('recipe links per food', () => {
+  it('each food has at most 3, each from a listed recipe source', () => {
+    const ids = new Set(data.recipeSources.map((r) => r.id))
+    for (const c of data.categories) {
+      expect(c.recipeLinks.length, c.name).toBeLessThanOrEqual(3)
+      for (const r of c.recipeLinks) expect(ids.has(r.sourceId), r.title).toBe(true)
+    }
+  })
+  it('baby food never gets recipe suggestions of its own', () => {
+    expect(getCategory('baby-food')!.recipeLinks).toEqual([])
+  })
+})
