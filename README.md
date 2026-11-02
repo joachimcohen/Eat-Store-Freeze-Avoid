@@ -53,3 +53,11 @@ After the first visit it works offline. While prototyping it always loads the ne
 ## Barcodes
 
 Scanning reads the barcode on the phone (zxing-wasm, served from this app). Only the barcode number is sent, to Open Food Facts, to get the product name and categories. The app then suggests one of our categories, using `offCategories` in the data file first and the synonyms second; frozen products only match frozen categories. The person always confirms, and their choice is remembered for that barcode on that phone only.
+
+## Before each update goes live
+
+```bash
+npm test               # all rule, data and wording checks
+npm run check-links    # checks every recipe link
+npm run check-links -- --fix   # hides links that are gone (404 or 410)
+```

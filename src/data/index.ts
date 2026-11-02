@@ -56,7 +56,7 @@ export type FoodData = {
   facts: Fact[]
   quiz: QuizQuestion[]
   offCategories: { note: string; checked: boolean; map: Record<string, string> }
-  recipeSources: { id: string; name: string; url: string; checked: boolean }[]
+  recipeSources: { id: string; name: string; url: string; checked: boolean; broken?: boolean }[]
   wording: typeof raw.wording
 }
 
@@ -70,4 +70,14 @@ export function getCategory(id: string): Category | null {
 
 export function getSource(id: string): Source | null {
   return data.sources.find((s) => s.id === id) ?? null
+}
+
+/** Recipe links to show: dead links (marked by the link checker) are hidden. */
+export function visibleRecipes(categoryId: string | null): { name: string; url: string; own: boolean }[] {
+  const own = (categoryId ? getCategory(categoryId)?.recipeLinks ?? [] : [])
+    .filter((r) => !r.broken)
+    .slice(0, 3)
+    .map((r) => ({ name: r.title, url: r.url, own: true }))
+  if (own.length > 0) return own
+  return data.recipeSources.filter((r) => !r.broken).map((r) => ({ name: r.name, url: r.url, own: false }))
 }

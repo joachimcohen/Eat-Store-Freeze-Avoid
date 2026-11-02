@@ -21,3 +21,9 @@ export async function readBarcode(input: Blob | ImageData, tryHarder = false): P
   const hit = results.find((r) => r.isValid && /^\d{8,14}$/.test(r.text))
   return hit?.text ?? null
 }
+
+/** Loads the barcode reader ahead of time, so it works offline later. */
+export async function warmUp() {
+  prepare()
+  await fetch(wasmUrl)
+}

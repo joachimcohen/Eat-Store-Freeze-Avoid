@@ -1,6 +1,6 @@
 import { Button } from '../components/ui'
 import { VerdictSticker } from '../components/verdictStyle'
-import { data } from '../data'
+import { data, visibleRecipes } from '../data'
 import { describeResult } from '../rules/describe'
 import type { VerdictResult } from '../rules/types'
 import type { FoodChoice } from '../lib/search'
@@ -76,13 +76,15 @@ function Row({ label, text, strong = false, print = false }: { label: string; te
 
 function Recipes({ food }: { food: FoodChoice }) {
   const w = data.wording.recipes
-  const own = food.category?.recipeLinks.slice(0, 3) ?? []
+  const links = visibleRecipes(food.category?.id ?? null)
+  if (links.length === 0) return null
+  const own = links[0].own
   return (
     <section aria-label={w.heading} className="mt-5 rounded-3xl bg-cream p-4">
       <h2 className="display text-xl font-semibold"><span aria-hidden="true">🍳 </span>{w.heading}</h2>
-      <p className="mt-1 text-sm text-ink-soft">{own.length > 0 ? w.perFood : w.intro}</p>
+      <p className="mt-1 text-sm text-ink-soft">{own ? w.perFood : w.intro}</p>
       <ul className="mt-2 grid gap-2">
-        {(own.length > 0 ? own.map((r) => ({ name: r.title, url: r.url })) : data.recipeSources).map((r) => (
+        {links.map((r) => (
           <li key={r.url}>
             <a href={r.url} target="_blank" rel="noreferrer" className="flex min-h-11 items-center justify-between rounded-2xl bg-white px-4 py-2 font-medium text-brand-deep shadow-sm">
               {r.name}<span aria-hidden="true">↗</span>

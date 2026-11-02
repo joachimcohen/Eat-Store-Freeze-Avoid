@@ -34,12 +34,13 @@ export function Carton({ capColour, onHome, children, footer }: {
       </div>
       <div className="carton -mt-px overflow-hidden rounded-b-2xl bg-ink px-2.5 pb-2.5">
         <header className="relative -mx-2.5 px-2.5 text-white">
-          <button type="button" onClick={onHome} className="block w-full px-3 pt-5 pb-9 text-left" aria-label="Eat, Store, Freeze, Avoid: start again">
+          <button type="button" onClick={onHome} className="block w-full px-3 pt-5 pb-9 text-left">
             <span className="display block text-[2rem] leading-none font-bold tracking-tight sm:text-4xl">
               Eat<Dot />Store<Dot />
               <br className="sm:hidden" />Freeze<Dot />Avoid
             </span>
-            <span className="print mt-3 block text-xs text-[#7fb0ff]">Best before? Use by? Let's check.</span>
+            <span className="sr-only">: start again</span>
+            <span className="print mt-3 block text-xs text-[#7fb0ff]" aria-hidden="true">Best before? Use by? Let's check.</span>
           </button>
           <Wave />
         </header>
@@ -53,7 +54,12 @@ export function Carton({ capColour, onHome, children, footer }: {
   )
 }
 
-const Dot = () => <span className="text-[#3b7bff]">·</span>
+const Dot = () => (
+  <>
+    <span className="text-[#3b7bff]" aria-hidden="true">·</span>
+    <span className="sr-only">, </span>
+  </>
+)
 
 function Wave() {
   return (

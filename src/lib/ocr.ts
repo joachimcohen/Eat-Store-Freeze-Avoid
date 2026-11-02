@@ -142,3 +142,8 @@ export async function readLabelTexts(file: Blob, onProgress?: (p: number) => voi
   onProgress?.(1)
   return texts
 }
+
+/** Loads the label reader ahead of time, so it works offline later. */
+export async function warmUp() {
+  await getWorker()
+}

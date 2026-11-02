@@ -55,7 +55,7 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
         <div className="mt-2 grid gap-4">
           {data.groups.map((g) => (
             <section key={g.id}>
-              <h3 className="display text-sm font-semibold tracking-wide text-brand-deep uppercase">{g.name}</h3>
+              <h2 className="display text-sm font-semibold tracking-wide text-brand-deep uppercase">{g.name}</h2>
               <ul className="mt-1 divide-y divide-rule overflow-hidden rounded-2xl border border-rule bg-white">
                 {data.categories.filter((c) => c.group === g.id).map((c) => (
                   <li key={c.id}>

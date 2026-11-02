@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { data, getCategory, getSource } from '.'
+import { data, getCategory, getSource, visibleRecipes } from '.'
 import { applyOffset } from '../rules/dates'
 import { decideVerdict } from '../rules/verdict'
 
@@ -142,6 +142,28 @@ describe('Open Food Facts category map', () => {
   it('every mapping points to a real category or the known gaps', () => {
     for (const [tag, id] of Object.entries(data.offCategories.map)) {
       expect(id === 'not-covered' || getCategory(id) !== null, tag).toBe(true)
+    }
+  })
+})
+
+describe('dead recipe links are hidden', () => {
+  it('hides a source the link checker marked broken', () => {
+    const before = visibleRecipes(null).length
+    data.recipeSources[0].broken = true
+    try {
+      expect(visibleRecipes(null).length).toBe(before - 1)
+      expect(visibleRecipes(null).map((r) => r.url)).not.toContain(data.recipeSources[0].url)
+    } finally {
+      delete data.recipeSources[0].broken
+    }
+  })
+  it('prefers recipes picked for the food, up to 3', () => {
+    const c = getCategory('pasta-rice')!
+    c.recipeLinks = [1, 2, 3, 4].map((n) => ({ title: `Pasta ${n}`, url: `https://example.org/${n}`, sourceId: 'x' }))
+    try {
+      expect(visibleRecipes('pasta-rice').map((r) => r.name)).toEqual(['Pasta 1', 'Pasta 2', 'Pasta 3'])
+    } finally {
+      c.recipeLinks = []
     }
   })
 })

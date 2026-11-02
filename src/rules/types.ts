@@ -19,7 +19,7 @@ export type Category = {
   lastReviewed: string
   checked: boolean
   note?: string
-  recipeLinks: { title: string; url: string; sourceId: string }[]
+  recipeLinks: { title: string; url: string; sourceId: string; broken?: boolean }[]
 }
 
 export type Verdict = 'eat' | 'store' | 'freeze' | 'avoid' | 'no-info'
