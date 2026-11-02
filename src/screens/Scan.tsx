@@ -92,7 +92,7 @@ export function Scan({ onCode, onSkip }: { onCode: (code: string) => void; onSki
       </div>
 
       <form
-        className="mt-5 rounded-3xl bg-carton p-4"
+        className="mt-5 rounded-[22px] bg-white p-4 shadow-card"
         onSubmit={(e) => { e.preventDefault(); if (digits.length >= 8) { done.current = true; onCode(digits) } }}
       >
         <label htmlFor="code" className="font-semibold">Or type the barcode number</label>

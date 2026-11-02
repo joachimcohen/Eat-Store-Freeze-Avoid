@@ -96,7 +96,7 @@ export function Quiz({ onDone }: { onDone: () => void }) {
     <>
       {/* Progress: a little bottle filling with milk */}
       <div className="mt-6 flex items-center gap-3">
-        <div className="h-3 flex-1 overflow-hidden rounded-full bg-carton" role="progressbar" aria-valuemin={1} aria-valuemax={questions.length} aria-valuenow={index + 1} aria-label="Quiz progress">
+        <div className="h-3 flex-1 overflow-hidden rounded-full bg-rule" role="progressbar" aria-valuemin={1} aria-valuemax={questions.length} aria-valuenow={index + 1} aria-label="Quiz progress">
           <div className="h-full rounded-full bg-brand transition-all" style={{ width: `${((index + (picked ? 1 : 0)) / questions.length) * 100}%` }} />
         </div>
         <span className="text-sm font-medium text-ink-soft">{index + 1} of {questions.length}</span>
@@ -104,7 +104,7 @@ export function Quiz({ onDone }: { onDone: () => void }) {
 
       <h1 tabIndex={-1} className="display mt-5 text-2xl font-semibold">Eat, Store, Freeze or Avoid?</h1>
 
-      <div className="mt-3 rounded-3xl bg-carton p-4">
+      <div className="mt-3 rounded-[22px] bg-white p-4 shadow-card">
         <p className="text-lg font-medium">{q.scenario}</p>
         <p className="print mt-3 inline-block rounded-md bg-white px-3 py-1.5 text-sm shadow-sm">
           {q.inputs.dateType === 'use-by' ? 'Use by' : 'Best before'} {formatDate(date)}

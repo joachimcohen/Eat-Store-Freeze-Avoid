@@ -26,7 +26,7 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
         <ul className="mt-2 divide-y divide-rule overflow-hidden rounded-2xl border border-rule bg-white" aria-label="Suggestions">
           {results.map((r) => (
             <li key={`${r.kind}:${r.term}`}>
-              <button type="button" onClick={() => onPick(r)} className="block min-h-12 w-full px-3 py-2 text-left hover:bg-carton">
+              <button type="button" onClick={() => onPick(r)} className="block min-h-12 w-full px-3 py-2 text-left hover:bg-paper">
                 <span className="font-medium">{r.term}</span>
                 {r.kind === 'synonym' && r.category && (
                   <span className="block text-sm text-ink-soft">→ {r.category.name}</span>
@@ -36,7 +36,7 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
             </li>
           ))}
           <li>
-            <button type="button" onClick={() => onPick(unknownFood(query))} className="block min-h-12 w-full px-3 py-2 text-left text-ink-soft hover:bg-carton">
+            <button type="button" onClick={() => onPick(unknownFood(query))} className="block min-h-12 w-full px-3 py-2 text-left text-ink-soft hover:bg-paper">
               Not listed? Carry on with "{query.trim()}"
             </button>
           </li>
@@ -55,11 +55,11 @@ export function FoodPicker({ onPick, autoFocus = false }: { onPick: (f: FoodChoi
         <div className="mt-2 grid gap-4">
           {data.groups.map((g) => (
             <section key={g.id}>
-              <h2 className="display text-sm font-semibold tracking-wide text-brand-deep uppercase">{g.name}</h2>
+              <h2 className="text-sm font-extrabold tracking-wide text-ink-soft uppercase">{g.name}</h2>
               <ul className="mt-1 divide-y divide-rule overflow-hidden rounded-2xl border border-rule bg-white">
                 {data.categories.filter((c) => c.group === g.id).map((c) => (
                   <li key={c.id}>
-                    <button type="button" onClick={() => onPick(chooseCategory(c))} className="block min-h-12 w-full px-3 py-2 text-left hover:bg-carton">
+                    <button type="button" onClick={() => onPick(chooseCategory(c))} className="block min-h-12 w-full px-3 py-2 text-left hover:bg-paper">
                       {c.name}
                     </button>
                   </li>

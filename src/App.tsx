@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Carton } from './components/Carton'
-import { CAP_COLOURS } from './components/verdictStyle'
+import { Sheet } from './components/Sheet'
 import { data } from './data'
 import { emptyDraft, type Draft } from './draft'
 import { combineReadings } from './lib/label'
 import { readLabelTexts } from './lib/ocr'
 import { foodFromLabelText, type FoodChoice } from './lib/search'
 import { lookupProduct, matchProduct, rememberedFood, rememberFood } from './lib/products'
-import { localToday } from './rules/dates'
+import { formatDate, localToday } from './rules/dates'
 import { decideVerdict } from './rules/verdict'
 import { Confirm } from './screens/Confirm'
 import { Find } from './screens/Find'
@@ -123,11 +122,12 @@ export default function App() {
       })
     : null
 
-  const cap = screen === 'result' && result ? CAP_COLOURS[result.verdict] : CAP_COLOURS.default
+  const dateLine = draft.date && draft.dateType && draft.dateType !== 'no-date'
+    ? `${draft.dateType === 'best-before' ? 'Best before' : draft.dateType === 'use-by' ? 'Use by' : 'Date'} ${formatDate(draft.date)}`
+    : null
 
   return (
-    <Carton
-      capColour={cap}
+    <Sheet
       onHome={startAgain}
       footer={screen === 'disclaimer' ? <p>Private prototype. General guidance only.</p> :
         <>
@@ -147,7 +147,7 @@ export default function App() {
         {screen === 'scan' && <Scan onCode={scanned} onSkip={() => go('find')} />}
         {screen === 'confirm' && <Confirm draft={draft} update={update} onPhoto={readPhoto} onSubmit={() => go('result')} />}
         {screen === 'result' && result && draft.food && (
-          <Result result={result} food={draft.food} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onNotRight={() => { update({ food: null }); go('confirm') }} onAgain={startAgain} />
+          <Result result={result} food={draft.food} dateLine={dateLine} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onNotRight={() => { update({ food: null }); go('confirm') }} onAgain={startAgain} />
         )}
         {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
         {screen === 'rules' && <RulesCheck />}
@@ -157,7 +157,7 @@ export default function App() {
         {screen === 'fact' && <DidYouKnow onDone={() => setScreenState('find')} />}
         {screen === 'about' && <About onShowDisclaimer={() => go('disclaimer-again')} onShowFacts={() => go('fact')} />}
       </div>
-    </Carton>
+    </Sheet>
   )
 }
 

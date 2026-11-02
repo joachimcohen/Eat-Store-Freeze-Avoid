@@ -46,7 +46,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
     <>
       <h1 className="display mt-6 text-3xl font-semibold" tabIndex={-1}>Check the details</h1>
 
-      <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Food">
+      <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Food">
         {draft.food ? (
           <>
             <p className="text-sm text-ink-soft">Food</p>
@@ -59,7 +59,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
           <>
             {draft.barcode && <BarcodeStatus barcode={draft.barcode} onUse={pickFood} />}
             {!draft.barcode && label.status === 'done' && label.suggestedFood && (
-              <div className="mb-4 rounded-2xl bg-white p-3 shadow-sm">
+              <div className="mb-4 rounded-2xl bg-paper p-3">
                 <p className="text-sm">Found on the label:</p>
                 <MatchLine food={label.suggestedFood} />
                 <Button variant="secondary" className="mt-2 w-full" onClick={() => pickFood(label.suggestedFood!)}>Yes, use this</Button>
@@ -70,7 +70,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
         )}
       </section>
 
-      <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Date">
+      <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Date">
         <LabelStatus draft={draft} />
         <PhotoButton variant={draft.barcode && label.status === 'idle' ? 'primary' : 'secondary'} onPhoto={onPhoto} className="mt-3 w-full">
           {label.status !== 'idle' ? 'Try another photo' : draft.barcode ? '📷 Now photograph the date label' : 'Read the date from a photo'}
@@ -105,7 +105,7 @@ export function Confirm({ draft, update, onPhoto, onSubmit }: {
         )}
       </section>
 
-      <section className="mt-4 rounded-3xl bg-carton p-4" aria-label="Quick questions">
+      <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Quick questions">
         <Choice
           legend="Is it opened or unopened?"
           name="opened"
@@ -165,7 +165,7 @@ function LabelStatus({ draft }: { draft: Draft }) {
 }
 
 function BarcodeStatus({ barcode, onUse }: { barcode: BarcodeState; onUse: (f: FoodChoice) => void }) {
-  const box = 'mb-4 rounded-2xl bg-white p-3 shadow-sm'
+  const box = 'mb-4 rounded-2xl bg-paper p-3'
   switch (barcode.status) {
     case 'looking':
       return <p role="status" className={box}>Looking up barcode {barcode.code}… Only the number is sent.</p>

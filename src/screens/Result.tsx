@@ -6,8 +6,10 @@ import type { VerdictResult } from '../rules/types'
 import type { FoodChoice } from '../lib/search'
 import { MatchLine } from './Confirm'
 
-export function Result({ result, food, fromBarcode = false, onChange, onNotRight, onAgain }: {
+export function Result({ result, food, dateLine = null, fromBarcode = false, onChange, onNotRight, onAgain }: {
   result: VerdictResult
+  /** The date as entered, for the little printed label, e.g. "Use by 3 Nov 2026". */
+  dateLine?: string | null
   fromBarcode?: boolean
   food: FoodChoice
   onChange: () => void
@@ -25,14 +27,18 @@ export function Result({ result, food, fromBarcode = false, onChange, onNotRight
         <button type="button" onClick={onNotRight} className="min-h-11 font-medium text-brand-deep underline underline-offset-4">{data.wording.notRight}</button>
       </div>
 
-      <h1 tabIndex={-1} className="mt-5 text-center">
-        <VerdictSticker verdict={result.verdict} label={lines.label} />
-      </h1>
-      <p className="display mt-4 text-center text-lg">{lines.summary}</p>
+      <div className="relative mt-3 flex justify-center">
+        <h1 tabIndex={-1} className="m-0">
+          <VerdictSticker verdict={result.verdict} label={lines.label} />
+        </h1>
+        {dateLine && (
+          <span className="print absolute right-0 bottom-3 rotate-3 rounded-full bg-white px-3 py-2 text-[11px] shadow-[0_2px_0_#0000001a] sm:right-[12%]">{dateLine}</span>
+        )}
+      </div>
+      <p className="display mt-4 text-center text-lg leading-snug">{lines.summary}</p>
 
-      {/* Styled like the nutrition panel on a milk bottle */}
-      <section aria-label="Details" className="mt-6 rounded-md border-2 border-ink bg-white p-3">
-        <h2 className="border-b-[6px] border-ink pb-1 text-2xl font-black tracking-tight">Date facts</h2>
+      <section aria-label="Details" className="mt-6 rounded-[22px] bg-white p-4 shadow-card">
+        <h2 className="display border-b-[5px] border-ink pb-1 text-xl">Date facts</h2>
         <dl>
           <Row label="Why" text={lines.why} strong />
           {lines.eatByAbout && <Row label="Eat by" text={lines.eatByAbout} print />}
@@ -41,7 +47,7 @@ export function Result({ result, food, fromBarcode = false, onChange, onNotRight
             <Row label="Shopping" text={data.wording.shopping[result.verdict]} />
           )}
         </dl>
-        <p className="mt-3 border-t-[6px] border-ink pt-2 text-lg font-black">{lines.ifInDoubt}</p>
+        <p className="display mt-2 border-t-[5px] border-ink pt-2 text-lg">{lines.ifInDoubt}</p>
         {result.recallsLink && (
           <p className="mt-1">
             <a className="font-medium text-brand-deep underline underline-offset-4" href={recalls.url} target="_blank" rel="noreferrer">{data.wording.recalls}</a>
@@ -67,8 +73,8 @@ export function Result({ result, food, fromBarcode = false, onChange, onNotRight
 
 function Row({ label, text, strong = false, print = false }: { label: string; text: string; strong?: boolean; print?: boolean }) {
   return (
-    <div className="grid grid-cols-[6.5rem_1fr] gap-2 border-b border-ink/70 py-2 last:border-b-0">
-      <dt className="font-bold">{label}</dt>
+    <div className="grid grid-cols-[6rem_1fr] gap-2 border-b border-rule py-2 last:border-b-0">
+      <dt className="font-extrabold">{label}</dt>
       <dd className={print ? 'print text-sm leading-relaxed' : strong ? 'font-semibold' : ''}>{text}</dd>
     </div>
   )
@@ -80,8 +86,8 @@ function Recipes({ food }: { food: FoodChoice }) {
   if (links.length === 0) return null
   const own = links[0].own
   return (
-    <section aria-label={w.heading} className="mt-5 rounded-3xl bg-cream p-4">
-      <h2 className="display text-xl font-semibold"><span aria-hidden="true">🍳 </span>{w.heading}</h2>
+    <section aria-label={w.heading} className="mt-5 rounded-[22px] bg-cream p-4">
+      <h2 className="display text-xl"><span aria-hidden="true">🍳 </span>{w.heading}</h2>
       <p className="mt-1 text-sm text-ink-soft">{own ? w.perFood : w.intro}</p>
       <ul className="mt-2 grid gap-2">
         {links.map((r) => (

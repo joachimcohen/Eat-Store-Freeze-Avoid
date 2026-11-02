@@ -23,7 +23,7 @@ export function About({ onShowDisclaimer, onShowFacts }: { onShowDisclaimer: () 
       <h2 className="display mt-6 text-xl font-semibold">{a.sourcesTitle}</h2>
       <ul className="mt-2 grid gap-3">
         {sources.map((s) => (
-          <li key={s.id} className="rounded-2xl bg-carton p-3">
+          <li key={s.id} className="rounded-2xl bg-white p-3 shadow-card">
             <a href={s.url} target="_blank" rel="noreferrer" className="font-semibold text-brand-deep underline underline-offset-4">{s.name}</a>
             <p className="mt-1 text-sm">{s.usedFor}</p>
             {s.note && <p className="mt-1 text-sm text-ink-soft">{s.note}</p>}
