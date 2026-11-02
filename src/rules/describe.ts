@@ -1,7 +1,7 @@
 // Turns a verdict into the lines shown on a result card, using only the
 // wording in the data file.
 import { data, getSource } from '../data'
-import { formatDate } from './dates'
+import { daysBetween, formatDate, formatGap, formatPeriod } from './dates'
 import type { VerdictResult } from './types'
 
 export type ResultLines = {
@@ -11,6 +11,8 @@ export type ResultLines = {
   eatByAbout: string | null
   /** Labelled facts for the result panel. */
   facts: { label: string; text: string }[]
+  /** "How we worked it out": the steps behind a date-based answer. */
+  working: string[]
   /** All notes in one list (used by the rules check page). */
   notes: string[]
   sources: string[]
@@ -39,6 +41,7 @@ export function describeResult(r: VerdictResult): ResultLines {
   })
 
   return {
+    working: working(r),
     label: w.verdicts[r.verdict].label,
     summary: w.verdicts[r.verdict].summary,
     why: w.reasons[r.reason],
@@ -48,4 +51,34 @@ export function describeResult(r: VerdictResult): ResultLines {
     sources,
     ifInDoubt: w.ifInDoubt,
   }
+}
+
+/** The steps behind a date-based answer, in plain words. */
+export function working(r: VerdictResult): string[] {
+  const t = r.timeline
+  if (!t || r.verdict === 'no-info') return []
+  const w = data.wording.timeline
+  const date = formatDate(t.date)
+  const out: string[] = []
+  out.push(fill(t.treatedAsUseBy ? w.notSure : t.rules === 'use-by' ? w.useBy : w.bestBefore, { date }))
+  // The date the gap to today is measured from.
+  let anchor = t.date
+  let what = t.rules === 'use-by' ? w.whatUseBy : w.whatBestBefore
+  if (t.rules === 'use-by') {
+    out.push(w.useByRule)
+  } else if (t.window && t.windowEnd) {
+    out.push(fill(w.window, { category: t.categoryName ?? 'this food', period: formatPeriod(t.window) }))
+    // Before the date, the gap to the printed date matters more.
+    if (daysBetween(t.today, t.date) < 0) {
+      out.push(fill(w.windowEnd, { date: formatDate(t.windowEnd) }))
+      anchor = t.windowEnd
+      what = w.whatWindowEnd
+    }
+  } else {
+    out.push(fill(w.noWindow, { category: t.categoryName ?? 'this food' }))
+  }
+  const gap = daysBetween(anchor, t.today)
+  const today = formatDate(t.today)
+  out.push(gap === 0 ? fill(w.todaySame, { today, what }) : fill(gap > 0 ? w.todayAfter : w.todayBefore, { today, duration: formatGap(gap), what }))
+  return out
 }

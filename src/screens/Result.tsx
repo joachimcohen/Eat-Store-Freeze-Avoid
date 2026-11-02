@@ -1,5 +1,5 @@
 import { Button } from '../components/ui'
-import { VerdictSticker } from '../components/verdictStyle'
+import { CAP_COLOURS, VerdictSticker } from '../components/verdictStyle'
 import { data, visibleRecipes } from '../data'
 import { describeResult } from '../rules/describe'
 import type { VerdictResult } from '../rules/types'
@@ -37,7 +37,29 @@ export function Result({ result, food, dateLine = null, fromBarcode = false, onC
       </div>
       <p className="display mt-4 text-center text-lg leading-snug">{lines.summary}</p>
 
-      <section aria-label="Details" className="mt-6 rounded-[22px] bg-white p-4 shadow-card">
+      {lines.working.length > 0 && (
+        <section aria-label={data.wording.timeline.title} className="mt-6 rounded-[22px] bg-white p-4 shadow-card">
+          <h2 className="display text-xl">{data.wording.timeline.title}</h2>
+          <ol className="mt-3">
+            {lines.working.map((step, i) => {
+              const last = i === lines.working.length - 1
+              return (
+                <li key={step} className="relative flex gap-3 pb-3 last:pb-0">
+                  {!last && <span aria-hidden="true" className="absolute top-5 bottom-0 left-[9px] w-0.5 bg-rule" />}
+                  <span
+                    aria-hidden="true"
+                    className="relative mt-0.5 size-5 shrink-0 rounded-full border-[3px]"
+                    style={{ borderColor: last ? CAP_COLOURS[result.verdict] : '#141414', background: last ? CAP_COLOURS[result.verdict] : '#ffffff' }}
+                  />
+                  <span className={i === 0 ? 'print pt-0.5 text-sm' : last ? 'font-extrabold' : ''}>{step}</span>
+                </li>
+              )
+            })}
+          </ol>
+        </section>
+      )}
+
+      <section aria-label="Details" className="mt-4 rounded-[22px] bg-white p-4 shadow-card">
         <h2 className="display border-b-[5px] border-ink pb-1 text-xl">Date facts</h2>
         <dl>
           <Row label="Why" text={lines.why} strong />

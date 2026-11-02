@@ -76,6 +76,22 @@ export type VerdictResult = {
   recallsLink: boolean
   /** No date on the pack: which help to show (look again; long-life explanation for pantry food). */
   noDateHelp: 'long-life' | 'look-again' | null
+  /** The working behind a date-based answer, shown as "How we worked it out". */
+  timeline: Timeline | null
   /** Sources behind this answer, most important first. */
   sourceIds: string[]
+}
+
+export type Timeline = {
+  /** Which rules were used. "Not sure" uses the use-by rules. */
+  rules: 'best-before' | 'use-by'
+  treatedAsUseBy: boolean
+  /** The date printed on the pack. */
+  date: string
+  today: string
+  /** Best-before only: the category's name and its guidance window (null = none). */
+  categoryName: string | null
+  window: Period | null
+  /** Best-before with a window: the end of it. */
+  windowEnd: string | null
 }

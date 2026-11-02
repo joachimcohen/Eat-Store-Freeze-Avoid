@@ -1992,7 +1992,7 @@
     },
     "matchedTo": "{term} → matched to: {category} (Foodbank Victoria category)",
     "matchUnchecked": "This match has not been checked yet.",
-    "disclaimer": "Guidance, not advice, and this tool can make mistakes. It assumes you chose the right food type and that the food is unopened, undamaged and stored as the label says. We don't check allergens or ingredients.",
+    "disclaimer": "This tool can make mistakes. It assumes you chose the right food type and that the food is unopened, undamaged and stored as the label says. We don't check allergens or ingredients.",
     "ifInDoubt": "If in doubt, throw it out.",
     "recalls": "Check current food recalls",
     "sourceLine": "Source: {source}. Last reviewed {date}.",
@@ -2087,7 +2087,23 @@
     },
     "disclaimerTitle": "Guidance, not advice",
     "checkFoodType": "Check this matches the food in your hand. The answer depends on it.",
-    "footerCountry": "Created on Wurundjeri Woi-wurrung Country, Melbourne."
+    "footerCountry": "Created on Wurundjeri Woi-wurrung Country, Melbourne.",
+    "timeline": {
+      "title": "How we worked it out",
+      "bestBefore": "Best before {date}",
+      "useBy": "Use by {date}",
+      "notSure": "Date {date} (treated as use-by, to be careful)",
+      "window": "Guidance for {category}: up to {period} past the best-before date.",
+      "noWindow": "Guidance for {category}: no time past the best-before date.",
+      "useByRule": "Use-by is a safety date: no time is allowed after it.",
+      "windowEnd": "Generally OK to eat until about {date}.",
+      "todayAfter": "Today is {today}, {duration} after {what}.",
+      "todayBefore": "Today is {today}, {duration} before {what}.",
+      "todaySame": "Today is {today}, the same day as {what}.",
+      "whatUseBy": "the use-by date",
+      "whatBestBefore": "the best-before date",
+      "whatWindowEnd": "the end of the guidance"
+    }
   },
   "recipeSources": [
     {

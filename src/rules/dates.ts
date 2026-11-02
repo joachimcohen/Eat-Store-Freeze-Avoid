@@ -101,3 +101,19 @@ export function dateFromParts(day: string, month: string, year: string): string 
   const check = new Date(Date.UTC(y, m - 1, d))
   return check.getUTCMonth() === m - 1 ? iso : null
 }
+
+/** A guidance window in words: "3 days", "2 weeks", "1 year". */
+export function formatPeriod(p: Period): string {
+  const unit = p.amount === 1 ? p.unit.replace(/s$/, '') : p.unit
+  return `${p.amount} ${unit}`
+}
+
+/** A gap between two dates in plain words: "2 days", "about 3 weeks", "about 2 months". */
+export function formatGap(days: number): string {
+  const d = Math.abs(days)
+  if (d < 14) return `${d} ${d === 1 ? 'day' : 'days'}`
+  if (d < 60) { const w = Math.round(d / 7); return `about ${w} weeks` }
+  if (d < 548) { const m = Math.round(d / 30.44); return `about ${m} ${m === 1 ? 'month' : 'months'}` }
+  const y = Math.round(d / 365.25)
+  return `about ${y} ${y === 1 ? 'year' : 'years'}`
+}

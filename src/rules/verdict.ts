@@ -29,6 +29,7 @@ function result(
     extraCare: verdict === 'eat' || verdict === 'freeze',
     recallsLink: verdict === 'avoid',
     noDateHelp: null,
+    timeline: null,
     sourceIds: [FOODBANK],
     ...extra,
   }
@@ -57,7 +58,11 @@ export function decideVerdict(input: VerdictInput): VerdictResult {
   // isn't in the list.
   if (input.dateType === 'use-by' || input.dateType === 'not-sure') {
     const daysLeft = daysBetween(today, date)
-    const useBy = { useByWarning: true, generalUseByRules: category === null }
+    const useBy = {
+      useByWarning: true,
+      generalUseByRules: category === null,
+      timeline: { rules: 'use-by' as const, treatedAsUseBy: input.dateType === 'not-sure', date, today, categoryName: null, window: null, windowEnd: null },
+    }
     const useBySources = [FOODBANK, FSANZ_DATES, BETTER_HEALTH]
 
     if (daysLeft < 0) return result('avoid', 'use-by-passed', 'use-by', { ...useBy, sourceIds: useBySources })
@@ -88,27 +93,33 @@ export function decideVerdict(input: VerdictInput): VerdictResult {
   if (category === null) return result('no-info', 'not-in-list', 'checks')
   if (opened) return result('no-info', 'opened', 'best-before')
 
+  // No time allowed past the date (for example baby food), or a best-before
+  // date on a use-by category: up to the date only.
+  const noWindow = category.guidance === null || category.usualDateType === 'use-by'
+  const windowEnd = noWindow ? null : addPeriod(date, category.guidance!)
+  const timeline = {
+    rules: 'best-before' as const, treatedAsUseBy: false, date, today,
+    categoryName: category.name, window: noWindow ? null : category.guidance, windowEnd,
+  }
+
   const daysLeft = daysBetween(today, date)
   if (daysLeft >= 0) {
     return result('store', 'best-before-not-yet', 'best-before', {
       storageTip: category.storageTip,
+      timeline,
       sourceIds: [FOODBANK, FSANZ_DATES, FSANZ_STORING],
     })
   }
 
-  // No time allowed past the date (for example baby food), or a best-before
-  // date on a use-by category: up to the date only.
-  if (category.guidance === null || category.usualDateType === 'use-by') {
-    return result('avoid', 'best-before-no-window', 'best-before')
-  }
+  if (noWindow) return result('avoid', 'best-before-no-window', 'best-before', { timeline })
 
-  const eatByAbout = addPeriod(date, category.guidance)
-  if (daysBetween(today, eatByAbout) >= 0) {
+  if (daysBetween(today, windowEnd!) >= 0) {
     return result('eat', 'within-guidance', 'best-before', {
-      eatByAbout,
+      eatByAbout: windowEnd,
       whatToCheck: category.whatToCheck,
+      timeline,
       sourceIds: [FOODBANK, BETTER_HEALTH],
     })
   }
-  return result('avoid', 'outside-guidance', 'best-before')
+  return result('avoid', 'outside-guidance', 'best-before', { timeline })
 }
