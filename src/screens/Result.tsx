@@ -6,11 +6,12 @@ import type { VerdictResult } from '../rules/types'
 import type { FoodChoice } from '../lib/search'
 import { MatchLine } from './Confirm'
 
-export function Result({ result, food, fromBarcode = false, onChange, onAgain }: {
+export function Result({ result, food, fromBarcode = false, onChange, onNotRight, onAgain }: {
   result: VerdictResult
   fromBarcode?: boolean
   food: FoodChoice
   onChange: () => void
+  onNotRight: () => void
   onAgain: () => void
 }) {
   const lines = describeResult(result)
@@ -19,7 +20,10 @@ export function Result({ result, food, fromBarcode = false, onChange, onAgain }:
 
   return (
     <>
-      <div className="mt-6 text-sm text-ink-soft"><MatchLine food={food} /></div>
+      <div className="mt-6 text-sm text-ink-soft">
+        <MatchLine food={food} />
+        <button type="button" onClick={onNotRight} className="min-h-11 font-medium text-brand-deep underline underline-offset-4">{data.wording.notRight}</button>
+      </div>
 
       <h1 tabIndex={-1} className="mt-5 text-center">
         <VerdictSticker verdict={result.verdict} label={lines.label} />
@@ -33,6 +37,9 @@ export function Result({ result, food, fromBarcode = false, onChange, onAgain }:
           <Row label="Why" text={lines.why} strong />
           {lines.eatByAbout && <Row label="Eat by" text={lines.eatByAbout} print />}
           {lines.facts.map((f) => <Row key={f.label} label={f.label} text={f.text} />)}
+          {(result.verdict === 'eat' || result.verdict === 'freeze') && (
+            <Row label="Shopping" text={data.wording.shopping[result.verdict]} />
+          )}
         </dl>
         <p className="mt-3 border-t-[6px] border-ink pt-2 text-lg font-black">{lines.ifInDoubt}</p>
         {result.recallsLink && (

@@ -1695,6 +1695,50 @@
       "intro": "Recipe ideas from:",
       "perFood": "Recipes that use this food:",
       "note": "Links open the original site. Recipes stay with their owners."
+    },
+    "firstVisit": {
+      "title": "Before you start",
+      "points": [
+        "This app gives general guidance about date labels. It isn't medical or legal advice.",
+        "Answers assume the food is unopened, undamaged and stored as the label says.",
+        "It doesn't check allergens or ingredients.",
+        "Best-before guidance comes from Foodbank Victoria's suggestions for food relief, not a guarantee.",
+        "If in doubt, throw it out."
+      ],
+      "button": "I understand"
+    },
+    "didYouKnow": {
+      "title": "Did you know?",
+      "next": "Next fact",
+      "gotIt": "Got it",
+      "dontShow": "Don't show facts when the app opens"
+    },
+    "notRight": "Not right? Choose another food",
+    "about": {
+      "title": "About this app",
+      "intro": "Eat, Store, Freeze, Avoid helps you understand date labels. Every answer comes from one checked data file and shows where it came from. Nothing you type or photograph leaves your phone, apart from a barcode number when you scan one.",
+      "howTitle": "How answers are worked out",
+      "how": [
+        "If the pack is damaged, swollen or leaking, or hasn't been stored as the label says: Avoid.",
+        "If there's no date on the pack: No verified info.",
+        "Use-by dates (and \"Not sure\") follow the use-by rules for every food: after the date, Avoid. On the date or the day before, Freeze if the food can be frozen, otherwise eat it today. Before that, Store.",
+        "If the pack has been opened: No verified info. The guidance we use covers unopened food only.",
+        "Best-before dates: on or before the date, Store. After the date, Eat if it's within the guidance window for that food, otherwise Avoid. Baby food is never shown as OK past its date.",
+        "Foods that aren't in our list get No verified info, never a guess."
+      ],
+      "gapsTitle": "Not covered yet",
+      "gaps": [
+        "Opened products",
+        "Fresh fruit and vegetables",
+        "Fresh milk",
+        "Leftovers and home-cooked food",
+        "How long food keeps once frozen at home"
+      ],
+      "sourcesTitle": "Sources",
+      "privacyTitle": "Privacy",
+      "privacy": "No accounts, cookies or tracking. Photos and camera frames are read on your phone and never uploaded. When you scan a barcode, only the barcode number is sent to Open Food Facts. Your quiz score, barcode choices and settings are kept on this phone only.",
+      "creditsTitle": "Credits",
+      "credits": "Product data from Open Food Facts, under the Open Database Licence. Recipe ideas link to OzHarvest, Foodbank Victoria and Foodbank SA and NT; recipes stay with their owners."
     }
   },
   "recipeSources": [

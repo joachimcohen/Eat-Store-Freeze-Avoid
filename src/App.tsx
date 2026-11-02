@@ -15,18 +15,28 @@ import { Quiz } from './screens/Quiz'
 import { Result } from './screens/Result'
 import { RulesCheck } from './screens/RulesCheck'
 import { Scan } from './screens/Scan'
+import { About } from './screens/About'
+import { DidYouKnow, Disclaimer } from './screens/Intro'
+import { prefs } from './lib/prefs'
 
-type Screen = 'find' | 'scan' | 'confirm' | 'result' | 'rules' | 'quiz'
+type Screen = 'find' | 'scan' | 'confirm' | 'result' | 'rules' | 'quiz' | 'disclaimer' | 'disclaimer-again' | 'fact' | 'about'
 
 export default function App() {
-  const [screen, setScreenState] = useState<Screen>(() => (location.hash === '#rules' ? 'rules' : location.hash === '#quiz' ? 'quiz' : 'find'))
+  const [screen, setScreenState] = useState<Screen>(() => {
+    // The disclaimer must be accepted before anything else.
+    if (!prefs.disclaimerAccepted()) return 'disclaimer'
+    if (location.hash === '#rules') return 'rules'
+    if (location.hash === '#quiz') return 'quiz'
+    if (location.hash === '#about') return 'about'
+    return prefs.factsHidden() ? 'find' : 'fact'
+  })
   const [draft, setDraft] = useState<Draft>(emptyDraft)
   const photoRun = useRef(0)
   const main = useRef<HTMLDivElement>(null)
 
   // Phone back button moves between screens.
   const go = useCallback((next: Screen) => {
-    history.pushState({ screen: next }, '', next === 'rules' || next === 'quiz' ? `#${next}` : location.pathname)
+    history.pushState({ screen: next }, '', next === 'rules' || next === 'quiz' || next === 'about' ? `#${next}` : location.pathname)
     setScreenState(next)
   }, [])
   useEffect(() => {
@@ -119,11 +129,15 @@ export default function App() {
     <Carton
       capColour={cap}
       onHome={startAgain}
-      footer={
+      footer={screen === 'disclaimer' ? <p>Private prototype. General guidance only.</p> :
         <>
           <p>Private prototype. General guidance only.</p>
           <p className="mt-2">
-            <a href="#rules" onClick={(e) => { e.preventDefault(); go('rules') }} className="underline underline-offset-4">Rules check (prototype)</a>
+            <FooterLink onClick={() => go('about')}>About and sources</FooterLink>
+            <span aria-hidden="true"> · </span>
+            <FooterLink onClick={() => go('disclaimer-again')}>Disclaimer</FooterLink>
+            <span aria-hidden="true"> · </span>
+            <FooterLink onClick={() => go('rules')}>Rules check</FooterLink>
           </p>
         </>
       }
@@ -133,12 +147,20 @@ export default function App() {
         {screen === 'scan' && <Scan onCode={scanned} onSkip={() => go('find')} />}
         {screen === 'confirm' && <Confirm draft={draft} update={update} onPhoto={readPhoto} onSubmit={() => go('result')} />}
         {screen === 'result' && result && draft.food && (
-          <Result result={result} food={draft.food} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onAgain={startAgain} />
+          <Result result={result} food={draft.food} fromBarcode={draft.barcode !== null} onChange={() => go('confirm')} onNotRight={() => { update({ food: null }); go('confirm') }} onAgain={startAgain} />
         )}
         {screen === 'result' && !result && <Find onPick={pickFood} onPhoto={readPhoto} onScan={() => go('scan')} onQuiz={() => go('quiz')} />}
         {screen === 'rules' && <RulesCheck />}
         {screen === 'quiz' && <Quiz onDone={startAgain} />}
+        {screen === 'disclaimer' && <Disclaimer onAccept={() => { prefs.acceptDisclaimer(); setScreenState(prefs.factsHidden() ? 'find' : 'fact') }} />}
+        {screen === 'disclaimer-again' && <Disclaimer again onAccept={() => history.back()} />}
+        {screen === 'fact' && <DidYouKnow onDone={() => setScreenState('find')} />}
+        {screen === 'about' && <About onShowDisclaimer={() => go('disclaimer-again')} onShowFacts={() => go('fact')} />}
       </div>
     </Carton>
   )
+}
+
+function FooterLink({ onClick, children }: { onClick: () => void; children: React.ReactNode }) {
+  return <button type="button" onClick={onClick} className="inline-flex min-h-11 items-center underline underline-offset-4">{children}</button>
 }
