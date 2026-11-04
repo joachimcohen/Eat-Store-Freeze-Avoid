@@ -46,27 +46,6 @@ export function Confirm({ draft, update, onDateScan, onSubmit, onStartAgain }: {
     <>
       <h1 className="display mt-6 text-3xl font-semibold" tabIndex={-1}>Check the details</h1>
 
-      <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Opened or unopened">
-        <Choice
-          legend="Is it opened or unopened?"
-          name="opened"
-          value={draft.opened}
-          onChange={(opened) => update({ opened })}
-          options={[{ value: 'unopened', label: 'Unopened' }, { value: 'opened', label: 'Opened' }]}
-        />
-        {draft.opened === 'opened' && (
-          <div role="status" className="mt-4 rounded-2xl border-2 border-ink bg-paper p-4">
-            <p className="display text-lg">{data.wording.openedStop.title}</p>
-            <p className="mt-1">{data.wording.openedStop.text}</p>
-            <p className="mt-2 font-extrabold">{data.wording.openedStop.useBy}</p>
-            <p className="mt-2 font-extrabold">{data.wording.ifInDoubt}</p>
-            <Button className="mt-4 w-full" onClick={onStartAgain}>{data.wording.openedStop.button}</Button>
-          </div>
-        )}
-      </section>
-
-      {draft.opened !== 'opened' && (
-        <>
       <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Food">
         {draft.food ? (
           <>
@@ -123,6 +102,24 @@ export function Confirm({ draft, update, onDateScan, onSubmit, onStartAgain }: {
 
       <section className="mt-4 rounded-[22px] bg-white p-4 shadow-card" aria-label="Quick questions">
         <Choice
+          legend="Is it opened or unopened?"
+          name="opened"
+          value={draft.opened}
+          onChange={(opened) => update({ opened })}
+          options={[{ value: 'unopened', label: 'Unopened' }, { value: 'opened', label: 'Opened' }]}
+        />
+        {draft.opened === 'opened' && (
+          <div role="status" className="mt-4 rounded-2xl border-2 border-ink bg-paper p-4">
+            <p className="display text-lg">{data.wording.openedStop.title}</p>
+            <p className="mt-1">{data.wording.openedStop.text}</p>
+            <p className="mt-2 font-extrabold">{data.wording.openedStop.useBy}</p>
+            <p className="mt-2 font-extrabold">{data.wording.ifInDoubt}</p>
+            <Button className="mt-4 w-full" onClick={onStartAgain}>{data.wording.openedStop.button}</Button>
+          </div>
+        )}
+        {draft.opened !== 'opened' && (
+          <div className="mt-5">
+          <Choice
           legend="Has it been stored as the label says?"
           name="stored"
           hint="For example, kept in the fridge if the label says so."
@@ -137,8 +134,12 @@ export function Confirm({ draft, update, onDateScan, onSubmit, onStartAgain }: {
           onChange={(damaged) => update({ damaged })}
           options={[{ value: 'no', label: 'No' }, { value: 'yes', label: 'Yes' }]}
         />
+          </div>
+        )}
       </section>
 
+      {draft.opened !== 'opened' && (
+        <>
       <Button className="mt-6 w-full text-lg" disabled={todo.length > 0} onClick={onSubmit}>Show the answer</Button>
       {todo.length > 0 && <p className="mt-2 text-sm text-ink-soft" aria-live="polite">Still needed: {todo.join(', ')}.</p>}
         </>
